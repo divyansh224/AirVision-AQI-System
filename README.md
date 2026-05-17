@@ -292,15 +292,29 @@ python backend/app.py
 
 ---
 
-# 🖼️ Screenshots
+# 📸 Project Screenshots
 
-## Dashboard
+## 🌐 Main Dashboard
 
-*Add dashboard screenshot here*
+![Dashboard](assets/dashboard.png)
 
-## Hardware Setup
+---
 
-*Add hardware image here*
+## 🏠 Indoor Air Quality Dashboard
+
+![Indoor Dashboard](assets/Indoor_air_quality dashboard.png)
+
+---
+
+## 📊 AQI Prediction Dashboard
+
+![Prediction Dashboard](assets/prediction_dashboard.png)
+
+---
+
+## 🔌 IoT Hardware Setup
+
+![IoT Device](assets/iot devices.png)
 
 ---
 
