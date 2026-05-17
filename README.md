@@ -302,7 +302,7 @@ python backend/app.py
 
 ## 🏠 Indoor Air Quality Dashboard
 
-![Indoor Dashboard](assets/Indoor_air_quality dashboard.png)
+![Indoor Dashboard](assets/indoor_dashboard.png)
 
 ---
 
@@ -314,9 +314,7 @@ python backend/app.py
 
 ## 🔌 IoT Hardware Setup
 
-![IoT Device](assets/iot devices.png)
-
----
+![IoT Device](assets/iot_device.jpg)
 
 # 🔥 Key Advantages
 
