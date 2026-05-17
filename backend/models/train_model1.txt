@@ -1,0 +1,114 @@
+# models/train_model.py
+import os
+import json
+import joblib
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR, "air_quality_data.csv")
+
+def calculate_aqi(concentration, breakpoints):
+    """Calculates the AQI sub-index for a specific pollutant."""
+    try:
+        for i in range(len(breakpoints) - 1):
+            if breakpoints[i][0] <= concentration <= breakpoints[i + 1][0]:
+                Clow, Chigh = breakpoints[i][0], breakpoints[i + 1][0]
+                Ilow, Ihigh = breakpoints[i][1], breakpoints[i + 1][1]
+                aqi = ((Ihigh - Ilow) / (Chigh - Clow)) * (concentration - Clow) + Ilow
+                return round(aqi)
+    except Exception:
+        pass
+    return 0
+
+def train_model(csv_path=csv_path, output_model_path='models/model.pkl', meta_path='models/model_meta.json'):
+    """
+    Trains a RandomForestRegressor on the pollutant data from csv_path.
+    Saves model to output_model_path and writes meta JSON containing feature list.
+    Returns (model, feature_list) or (None, None) on failure.
+    """
+    # Ensure models folder exists
+    out_dir = os.path.dirname(output_model_path)
+    if out_dir and not os.path.exists(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
+
+    if not os.path.exists(csv_path):
+        print(f"Wait: '{csv_path}' not found. Run the app or fetch data first.")
+        return None, None
+
+    try:
+        df = pd.read_csv(csv_path)
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return None, None
+
+    # AQI breakpoints for sub-index calculation
+    breakpoints_dict = {
+        'pm2_5': [(0.0, 0), (12.0, 50), (35.4, 100), (55.4, 150), (150.4, 200), (250.4, 300), (350.4, 400), (500.4, 500)],
+        'pm10':  [(0.0, 0), (54, 50), (154, 100), (254, 150), (354, 200), (424, 300), (504, 400), (604, 500)],
+        'no2':   [(0.0, 0), (53, 50), (100, 100), (360, 150), (649, 200), (1249, 300), (1649, 400), (2049, 500)],
+        'o3':    [(0.0, 0), (54, 50), (70, 100), (85, 150), (105, 200), (200, 300), (300, 400), (400, 500)],
+        'so2':   [(0.0, 0), (35, 50), (75, 100), (185, 150), (304, 200), (604, 300), (804, 400), (1004, 500)],
+        'co':    [(0.0, 0), (4.4, 50), (9.4, 100), (12.4, 150), (15.4, 200), (30.4, 300), (40.4, 400), (50.4, 500)],
+    }
+
+    # Compute sub-index columns only for pollutants present
+    aqi_columns = []
+    FEATURE_ORDER = ['pm2_5','pm10','no2','o3','so2','co']
+    
+    #-aqi_columns = []
+    found_pollutants = []
+    for pollutant, breakpoints in breakpoints_dict.items():
+        if pollutant in df.columns:
+            aqi_col = f"{pollutant}_AQI"
+            # ensure no NaNs break the calculation
+            df[pollutant] = df[pollutant].fillna(0)
+            df[aqi_col] = df[pollutant].apply(lambda x: calculate_aqi(x, breakpoints))
+            aqi_columns.append(aqi_col)
+            found_pollutants.append(pollutant)
+
+    if not aqi_columns:
+        print("No pollutant columns found in CSV. Found columns:", df.columns.tolist())
+        return None, None
+
+    # Final AQI target -- use max of sub-indices
+    df['final_aqi'] = df[aqi_columns].max(axis=1)
+
+    # Use only found pollutant columns as features
+    X = df[found_pollutants].fillna(0)
+    y = df['final_aqi']
+
+    # Train/test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
+    model.fit(X_train, y_train)
+    y_pred =model.predict(X_test)
+    mae = mean_absolute_error(y_test,y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+
+    r2= r2_score(y_test, y_pred)
+
+    print("📊 MODEL VALIDATION RESULTS")
+    print(f"MAE  (Avg AQI error): {mae:.2f}")
+    print(f"RMSE (Penalty error): {rmse:.2f}")
+    print(f"R²   (Explained var): {r2:.3f}")
+
+    # Save model and meta
+    try:
+        joblib.dump(model, output_model_path)
+        meta = {'features': found_pollutants}
+        with open(meta_path, 'w') as f:
+            json.dump(meta, f)
+        print(f"Saved model -> {output_model_path} and meta -> {meta_path}")
+    except Exception as e:
+        print("Failed to save model or meta:", e)
+        # still return trained model object
+        return model, found_pollutants
+
+    return model, found_pollutants
+
+if __name__ == "__main__":
+    train_model()

@@ -1,0 +1,94 @@
+// --- Mode Switching (Login vs Signup) ---
+function switchMode(mode) {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const loginBtn = document.getElementById('tab-login');
+    const signupBtn = document.getElementById('tab-signup');
+    const errorMsgs = document.querySelectorAll('.error-msg');
+
+    // Clear errors
+    errorMsgs.forEach(msg => msg.innerText = "");
+
+    if (mode === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+        loginBtn.classList.add('active');
+        signupBtn.classList.remove('active');
+    } else {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        loginBtn.classList.remove('active');
+        signupBtn.classList.add('active');
+    }
+}
+
+// --- Toggle Password Visibility ---
+function togglePassword(fieldId) {
+    const input = document.getElementById(fieldId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+// --- Handle Login Submission ---
+async function handleLogin(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('login-id').value;
+    const password = document.getElementById('login-pass').value;
+    const errorEl = document.getElementById('login-error');
+    const submitBtn = event.target.querySelector('button');
+
+    // Basic Validation
+    if(!email || !password) {
+        errorEl.innerText = "Please fill in all fields.";
+        return;
+    }
+
+    // Loading State
+    submitBtn.innerText = "Verifying...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            window.location.href = data.redirect; // Go to dashboard
+        } else {
+            errorEl.innerText = data.message || "Invalid credentials.";
+            submitBtn.innerText = "Log In";
+            submitBtn.disabled = false;
+        }
+    } catch (err) {
+        console.error(err);
+        errorEl.innerText = "Server connection failed.";
+        submitBtn.innerText = "Log In";
+        submitBtn.disabled = false;
+    }
+}
+
+// --- Handle Signup Submission (Mock) ---
+function handleSignup(event) {
+    event.preventDefault();
+    const errorEl = document.getElementById('signup-error');
+    const pass = document.getElementById('signup-pass').value;
+    const confirm = document.getElementById('signup-confirm').value;
+
+    if (pass !== confirm) {
+        errorEl.innerText = "Passwords do not match!";
+        return;
+    }
+
+    // Since you haven't implemented a /signup endpoint in Flask yet,
+    // we will show a temporary message.
+    alert("Sign Up feature coming soon! Please use the Login tab.");
+    switchMode('login');
+}

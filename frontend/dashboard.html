@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SkySigma — AQI Dashboard</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:,">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#08060b;
+      --card:#0d0f14aa;
+      --glass-border: rgba(255,255,255,0.06);
+      --neon-cyan: #00f0ff;
+      --neon-purple: #8a4bff;
+      --muted: #9aa0a6;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --accent: linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));
+      --good: #00c853;        /* green */
+      --moderate: #ffeb3b;    /* yellow */
+      --unhealthy-sg: #ff9800;/* orange */
+      --unhealthy: #ff3d00;   /* red */
+      --very: #8e24aa;        /* purple/dark */
+      --glass-blur: 10px;
+      color-scheme: dark;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(600px 300px at 10% 20%, rgba(138,75,255,0.06), transparent 8%),
+        radial-gradient(700px 300px at 90% 80%, rgba(0,240,255,0.04), transparent 12%),
+        var(--bg);
+      -webkit-font-smoothing:antialiased;
+      color:#dfe7ee;
+      padding:24px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:20px;
+    }
+
+    /* container */
+    .app {
+      width:100%;
+      max-width:1200px;
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      grid-auto-rows: min-content;
+      gap:20px;
+      align-items:start;
+    }
+
+    /* header */
+    .header {
+      grid-column:1/-1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    }
+
+    .header-left {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .back-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(10px);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .back-btn:hover {
+      background: rgba(0,240,255,0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 22px rgba(0,240,255,0.18);
+    }
+
+    .search {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:8px;
+      border-radius:12px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+      min-width:240px;
+      max-width:420px;
+    }
+
+    .search input {
+      background:transparent;
+      border:none;
+      outline:none;
+      color:var(--muted);
+      font-weight:600;
+      flex:1;
+      font-size:14px;
+    }
+    .search button {
+      border-radius:10px;
+      border:none;
+      padding:8px 10px;
+      cursor:pointer;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      color:#04121a;
+      font-weight:700;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 8px 30px rgba(138,75,255,0.06);
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo {
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 6px 18px rgba(138,75,255,0.06), 0 2px 6px rgba(0,240,255,0.02);
+    }
+    .logo svg { filter: drop-shadow(0 4px 18px rgba(138,75,255,0.18)); }
+
+    .app-name {
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:0.6px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    .header-right {
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .time-block {
+      text-align:right;
+    }
+    .time-block .loc {
+      font-weight:600;
+    }
+    .time-block .time {
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .current-weather {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .temp {
+      font-size:20px;
+      font-weight:700;
+    }
+    .cond {
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* AQI Corner (right column) */
+    .aqi-corner {
+      position:sticky;
+      top:24px;
+    }
+    .glass-card {
+      padding:16px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    .aqi-card {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .aqi-value {
+      font-weight:800;
+      font-size:36px;
+      letter-spacing:0.6px;
+      color:var(--neon-cyan);
+      text-shadow: 0 6px 24px rgba(0,240,255,0.08);
+    }
+    .aqi-meta { text-align:right; }
+    .aqi-label { color:var(--muted); font-size:13px; }
+    .aqi-cat { font-weight:700; font-size:14px; margin-top:4px; }
+
+    .trend {
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:10px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .trend.up { color: #ff3d00; }
+    .trend.down { color: #00c853; }
+    .trend.steady { color: var(--muted); }
+
+    /* Main left column content */
+    .main {
+      padding:16px;
+      border-radius:14px;
+      min-height:260px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+    }
+
+    /* Chart area */
+    .chart-wrap {
+      padding:14px;
+      border-radius:12px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    canvas { width:100% !important; height:260px !important; }
+
+    /* Pollutants grid */
+    .pollutants {
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+      gap:12px;
+    }
+
+    .poll-card {
+      padding:12px;
+      border-radius:12px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    }
+    .poll-left { display:flex; gap:8px; align-items:center; }
+    .poll-name { font-weight:700; font-size:13px; }
+    .poll-val { color:var(--muted); font-size:13px; }
+    .poll-bar {
+      height:8px;
+      width:80px;
+      background:rgba(255,255,255,0.04);
+      border-radius:8px;
+      overflow:hidden;
+    }
+    .poll-level {
+      height:100%;
+      width:30%;
+      border-radius:8px;
+      transition:width 700ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    /* Alert banner */
+    .alert {
+      margin-top:14px;
+      padding:14px;
+      border-radius:12px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      color:#ebeef1;
+      font-weight:700;
+    }
+    .alert .left { display:flex; gap:12px; align-items:center; }
+    .alert .meta { color:rgba(8,18,25,0.75); font-weight:600; }
+    .alert .msg { color: rgba(232, 237, 241, 0.9); font-weight:800; font-size:15px; }
+
+    /* footer small */
+    .small {
+      font-size:12px;
+      color:var(--muted);
+      margin-top:10px;
+      text-align:center;
+    }
+
+    /* responsive */
+    @media (max-width:980px){
+      .app{ grid-template-columns: 1fr; padding-bottom:50px; }
+      .aqi-corner{ position:relative; top:0; }
+      canvas{height:220px !important}
+      .search { min-width: 140px; max-width: 220px; }
+    }
+
+    /* subtle hover / micro animation */
+    .glass-card:hover, .poll-card:hover{
+      transform: translateY(-6px);
+      transition:transform 350ms cubic-bezier(.2,.9,.2,1);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.7);
+    }
+
+    /* small glowing accent */
+    .glow {
+      position: relative;
+    }
+    .glow::after {
+      content:'';
+      position:absolute;
+      inset:-2px;
+      z-index:-1;
+      border-radius:14px;
+      background: linear-gradient(90deg, rgba(0,240,255,0.04), rgba(138,75,255,0.03));
+      filter: blur(18px);
+      opacity:0.6;
+      transition:opacity .3s;
+    }
+
+    /* small icons */
+    .icon {
+      width:36px;height:36px;border-radius:8px;
+      display:grid;place-items:center;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02);
+      /* alert button styling */
+  color: #dfe7ee;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.alert-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: linear-gradient(90deg, rgba(0,240,255,0.12), rgba(138,75,255,0.08));}
+
+ .alert-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,240,255,0.25);
+}
+   .modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+
+.hidden { display: none; }
+
+.modal-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.modal h3 {
+  margin-bottom: 14px;
+}
+
+.modal-section {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.predict-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: linear-gradient(90deg, rgba(138,75,255,0.2), rgba(0,240,255,0.15));
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.predict-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(138,75,255,0.3);
+}
+.login-btn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="header glass-card glow" role="banner">
+      <div class="header-left">
+        <!-- BACK BUTTON -->
+        <button class="back-btn" onclick="goBack()" title="Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="#00f0ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- SEARCH -->
+        <div class="search" role="search" aria-label="Search city">
+          <input id="citySearch" placeholder="Search city (e.g., Delhi, London)" aria-label="City name" />
+          <button id="searchBtn" title="Search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#04121a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" fill="#fff" /></svg>
+          </button>
+        </div>
+
+        <div style="width:12px"></div>
+
+        <div class="brand">
+          <div class="logo" aria-hidden="true">
+            <!-- simple sigil -->
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#g)"/>
+              <defs>
+                <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00f0ff"/><stop offset="1" stop-color="#8a4bff"/></linearGradient>
+              </defs>
+              <path d="M7 15L10.5 9L14 15" stroke="#081219" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="app-name">AirVision</div>
+            <div class="tag">AQI · Forecast · Sigma grindset</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- alert button for this file -->
+        <button class="alert-btn glow" onclick="openAlertModal()" title="Get Alerts">
+          🔔 Get Alerts
+       </button>
+       <div class="header-center" style="display:flex; gap:12px; align-items:center;">
+
+  <button class="login-btn" onclick="window.location.href='/login'">
+    Login
+  </button>
+
+  <button class="predict-btn" onclick="openPredictionApp()">
+    🔮 Prediction
+  </button>
+
+</div>
+
+        <div class="time-block">
+          <div class="loc" id="location">Mumbai, IN</div>
+          <div class="time" id="time">--:--</div>
+        </div>
+
+        <div class="current-weather" aria-live="polite">
+          <div>
+            <div class="temp" id="cur-temp">27°C</div>
+            <div class="cond" id="cur-cond">Clear • Calm</div>
+          </div>
+          <div class="icon" id="weather-icon" title="Condition icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="#9aa0a6" stroke-width="1.25" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- LEFT: main content -->
+    <main class="main">
+      <section class="chart-wrap">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <div style="display:flex;flex-direction:column;">
+            <div style="font-weight:800;font-size:15px">24-Hour AQI Forecast</div>
+            <div style="color:var(--muted);font-size:13px;margin-top:2px">Predicted by your ML model — tidy, precise.</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted)">Time: next 24 hours</div>
+        </div>
+
+        <canvas id="aqiChart"></canvas>
+      </section>
+
+      <!-- pollutants -->
+      <section class="pollutants" id="pollutantGrid" aria-live="polite" aria-label="Pollutants list">
+        <!-- populated by JS -->
+      </section>
+
+      <div id="sigmaAlertContainer" style="margin-top:12px;"></div>
+
+      <div class="small">Data collected and trained from real-world sources</div>
+    </main>
+
+    <!-- RIGHT: AQI corner and details -->
+    <aside class="aqi-corner">
+      <div class="glass-card aqi-card" style="margin-bottom:12px;">
+        <div>
+          <div style="font-size:13px;color:var(--muted);">Live AQI</div>
+          <div class="aqi-value" id="liveAQI">--</div>
+          <div class="aqi-cat" id="liveCat" style="color:var(--neon-cyan)">—</div>
+        </div>
+
+        <div style="width:1px;height:56px;background:rgba(255,255,255,0.03)"></div>
+
+        <div style="text-align:right">
+          <div style="font-size:13px;color:var(--muted)">Predicted (1h)</div>
+          <div style="font-weight:800;font-size:28px;color:var(--neon-purple)" id="predAQI">--</div>
+          <div style="font-size:13px;color:var(--muted)" id="predCat">—</div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="margin-bottom:12px;">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-weight:800">Quick Pollutant Breakdown</div>
+          <div style="color:var(--muted);font-size:13px">Now</div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;color:var(--muted);font-size:13px">PM2.5</div>
+            <div id="miniPM25" style="font-weight:700">-- μg/m³</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;color:var(--muted);font-size:13px">PM10</div>
+            <div id="miniPM10" style="font-weight:700">-- μg/m³</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;color:var(--muted);font-size:13px">O₃</div>
+            <div id="miniO3" style="font-weight:700">-- ppb</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Trend</div>
+          <div id="trendBadge" class="trend steady">—</div>
+        </div>
+
+        <div style="color:var(--muted);font-size:13px">
+          Comparison between Live AQI and predicted AQI (1 hour). Trend updates dynamically.
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script>
+    // alert logi 
+      function openAlertModal() {
+  document.getElementById('alertModal').classList.remove('hidden');
+}
+
+function closeAlertModal() {
+  document.getElementById('alertModal').classList.add('hidden');
+}
+
+function handleAlertType() {
+  const type = document.querySelector('input[name="alertType"]:checked')?.value;
+  document.getElementById('voiceInput').classList.toggle('hidden', type !== 'voice');
+  document.getElementById('smsInput').classList.toggle('hidden', type !== 'sms');
+}
+
+function handleSmsChoice(value) {
+  const input = document.getElementById('smsValue');
+  if (!value) {
+    input.classList.add('hidden');
+    return;
+  }
+  input.classList.remove('hidden');
+  input.placeholder = value === 'email' ? 'Enter email address' : 'Enter phone number';
+}
+function saveAlert() {
+  const city = state.currentCity;
+  const alertType = document.querySelector('input[name="alertType"]:checked')?.value;
+
+  let contact = null;
+  if (alertType === "voice") {
+    contact = document.getElementById("voicePhone").value;
+  } else {
+    contact = document.getElementById("smsValue").value;
+  }
+
+  fetch("/save_alert", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      city: city,
+      alert_type: alertType,
+      contact: contact,
+      threshold: 150
+    })
+  })
+  .then(res => res.json())
+  .then(() => alert("Alert saved successfully"))
+}
+
+
+    /***********************************************
+     * CONFIG - Frontend API Keys and Endpoints
+     ***********************************************/
+    // ℹ️ OWM_API_KEY should be set from environment or backend config
+    // For production, consider proxying OpenWeather calls through your backend
+    const OWM_API_KEY = ""; 
+    const ML_BACKEND_URL = "http://127.0.0.1:5000/predict_aqi"; // Flask ML endpoint (GET)
+    const DEFAULT_COORDS = { lat: 19.0760, lon: 72.8777 }; // Mumbai fallback
+    /***********************************************/
+
+    // small helpers & state
+    let state = { realtime: null, predicted: null, chart: null, currentCoords: DEFAULT_COORDS, currentCity: null };
+
+    // Utility: get CSS var
+    function getCssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+    /***********************************************
+     * GEO / SEARCH
+     ***********************************************/
+    // Try geolocation first; falls back to DEFAULT_COORDS
+    function getCoords() {
+      return new Promise((resolve) => {
+        if (navigator.geolocation) {
+          const t = setTimeout(() => {
+            state.currentCoords = DEFAULT_COORDS;
+            resolve(DEFAULT_COORDS);
+          }, 4000);
+          navigator.geolocation.getCurrentPosition(
+            pos => { clearTimeout(t); const c = { lat: pos.coords.latitude, lon: pos.coords.longitude }; state.currentCoords = c; resolve(c); },
+            err => { clearTimeout(t); state.currentCoords = DEFAULT_COORDS; resolve(DEFAULT_COORDS); },
+            { maximumAge: 60_000, timeout: 4000 }
+          );
+        } else {
+          state.currentCoords = DEFAULT_COORDS;
+          resolve(DEFAULT_COORDS);
+        }
+      });
+    }
+
+    // Use OpenWeather geocoding endpoint to resolve a city name to coords
+    async function geocodeCity(city) {
+      if (!city || !city.trim()) return null;
+      try {
+        const q = encodeURIComponent(city.trim());
+        const url = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&limit=1&appid=${OWM_API_KEY}`;
+        const r = await fetch(url);
+        if (!r.ok) throw new Error('geocode failed');
+        const arr = await r.json();
+        if (!arr || arr.length === 0) return null;
+        const res = { lat: arr[0].lat, lon: arr[0].lon, name: `${arr[0].name}${arr[0].country ? ', ' + arr[0].country : ''}` };
+        // update state
+        state.currentCoords = { lat: res.lat, lon: res.lon };
+        state.currentCity = res.name;
+        return res;
+      } catch (err) {
+        console.error('geocodeCity', err);
+        return null;
+      }
+    }
+
+    /***********************************************
+     * OPENWEATHER (Realtime weather + air pollution)
+     ***********************************************/
+    
+    function aqiCategory(aqi){
+  if (aqi <= 50) return { name: "Good", color: getCssVar('--good') };
+  if (aqi <= 100) return { name: "Moderate", color: getCssVar('--moderate') };
+  if (aqi <= 150) return { name: "Unhealthy (SG)", color: getCssVar('--unhealthy-sg') };
+  if (aqi <= 200) return { name: "Unhealthy", color: getCssVar('--unhealthy') };
+  return { name: "Very Unhealthy", color: getCssVar('--very') };
+}
+    
+    function convertUnits(p) {
+  return {
+    "PM2.5": p["PM2.5"],  // Keep µg/m³ (already correct)
+    "PM10": p["PM10"],    // Keep µg/m³ (already correct)
+    "NO2": p["NO2"] / 1.88,   // µg/m³ → ppb approx
+    "SO2": p["SO2"] / 2.62,   // µg/m³ → ppb approx
+    "O3": p["O3"] / 2.0,      // µg/m³ → ppb approx
+    "CO": p["CO"] / 1145      // µg/m³ → ppm approx
+  };
+}
+
+    // Calculate AQI from pollutant components (EPA-style breakpoints)
+    // NOTE: Converts gases to ppb/ppm before calculation (EPA standard)
+    function calculateAQIFromComponents(pollutants) {
+    // Convert gases to ppb/ppm for EPA calculation
+    const converted = {
+        "PM2.5": pollutants["PM2.5"],  // Keep µg/m³
+        "PM10": pollutants["PM10"],    // Keep µg/m³
+        "NO2": pollutants["NO2"] / 1.88,   // µg/m³ → ppb
+        "SO2": pollutants["SO2"] / 2.62,   // µg/m³ → ppb
+        "O3": pollutants["O3"] / 2.0,      // µg/m³ → ppb
+        "CO": pollutants["CO"] / 1145      // µg/m³ → ppm
+    };
+
+    const breakpoints = {
+  'pm2_5': [[0,0],[12,50],[35.4,100],[55.4,150],[150.4,200],[250.4,300],[350.4,400],[500.4,500]],
+  'pm10': [[0,0],[54,50],[154,100],[254,150],[354,200],[424,300],[504,400],[604,500]],
+  'no2': [[0,0],[53,50],[100,100],[360,150],[649,200],[1249,300],[1649,400],[2049,500]],
+  'o3': [[0,0],[54,50],[70,100],[85,150],[105,200],[200,300],[300,400],[400,500]],
+  'so2': [[0,0],[35,50],[75,100],[185,150],[304,200],[604,300],[804,400],[1004,500]],
+  'co': [[0,0],[4.4,50],[9.4,100],[12.4,150],[15.4,200],[30.4,300],[40.4,400],[50.4,500]]
+};
+
+      function calcAqiForPollutant(name, value) {
+        if (!(name in breakpoints)) return 0;
+        const bp = breakpoints[name];
+        
+        // Handle value below the minimum breakpoint
+        if (value < bp[0][0]) return 0;
+        
+        // Handle value above the maximum breakpoint
+        if (value > bp[bp.length - 1][0]) return bp[bp.length - 1][1];
+        
+        // Find the appropriate breakpoint range
+        for (let i = 0; i < bp.length - 1; i++) {
+          if (value >= bp[i][0] && value <= bp[i + 1][0]) {
+            const Clow = bp[i][0];
+            const Chigh = bp[i + 1][0];
+            const Ilow = bp[i][1];
+            const Ihigh = bp[i + 1][1];
+            
+            // Linear interpolation formula
+            return Math.round(((Ihigh - Ilow) / (Chigh - Clow)) * (value - Clow) + Ilow);
+          }
+        }
+        return 0;
+      }
+        
+        // Find the matching range and interpolate
+       // for (let i = 0; i < bp.length - 1; i++) {
+         // if (value >= bp[i][0] && value <= bp[i + 1][0]) {
+           // const Clow = bp[i][0], Chigh = bp[i + 1][0];
+           // const Ilow = bp[i][1], Ihigh = bp[i + 1][1];
+           // return Math.round(((Ihigh - Ilow) / (Chigh - Clow)) * (value - Clow) + Ilow);
+        //  }
+       // }
+        
+        // Fallback (shouldn't reach here if above checks work)
+      
+
+      const pm25Aqi = calcAqiForPollutant('pm2_5', Number(converted['PM2.5'] ?? 0));
+      const pm10Aqi = calcAqiForPollutant('pm10', Number(converted['PM10'] || 0));
+      const no2Aqi = calcAqiForPollutant('no2', Number(converted['NO2'] || 0));
+      const so2Aqi = calcAqiForPollutant('so2', Number(converted['SO2'] || 0));
+      const o3Aqi = calcAqiForPollutant('o3', Number(converted['O3'] || 0));
+      const coAqi = calcAqiForPollutant('co', Number(converted['CO'] || 0));
+
+      const finalAqi = Math.max(pm25Aqi, pm10Aqi);
+      
+      // 🔍 DEBUG: Log AQI calculations
+      console.log("📈 AQI Sub-Indices:", { pm25Aqi, pm10Aqi, no2Aqi, so2Aqi, o3Aqi, coAqi });
+      console.log("📊 Final AQI Calculated:", finalAqi);
+
+      return finalAqi;
+    }
+    
+
+    async function getRealtimeAQI(coordsOverride) {
+      try {
+        const coords = coordsOverride || state.currentCoords || await getCoords();
+        state.currentCoords = coords;
+        const { lat, lon } = coords;
+
+        // weather
+        const weatherResp = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}&units=metric`);
+        if (!weatherResp.ok) throw new Error('weather fetch failed');
+        const weatherJson = await weatherResp.json();
+
+        // air pollution
+        const airResp = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${OWM_API_KEY}`);
+        if (!airResp.ok) throw new Error('air pollution fetch failed');
+        const airJson = await airResp.json();
+
+       const main = airJson?.list?.[0]?.main;
+        const components = airJson?.list?.[0]?.components || {};
+        const owmAqi = main?.aqi ?? 1;
+
+        const pollutants = {
+          "PM2.5": components['pm2_5'] != null ? Number(components['pm2_5']) : 0,
+         "PM10": components['pm10'] != null ? Number(components['pm10']) : 0,
+         "NO2": components['no2'] != null ? Number(components['no2']) : 0,
+        "SO2": components['so2'] != null ? Number(components['so2']) : 0,
+         "O3": components['o3'] != null ? Number(components['o3']) : 0,
+         "CO": components['co'] != null ? Number(components['co']) : 0
+        };
+
+        // 🔍 DEBUG: Log pollutants and API response
+        console.log("🌍 OpenWeather Air Pollution Response:", airJson);
+        console.log("📊 Extracted Pollutants:", pollutants);
+        console.log("🌡️ Weather:", weatherJson);
+
+        // If weatherJson has a name, update currentCity for clarity
+        if (weatherJson && weatherJson.name) {
+          state.currentCity = `${weatherJson.name}${weatherJson.sys?.country ? ', ' + weatherJson.sys.country : ''}`;
+        }
+
+        return {
+          timestamp: Date.now(),
+          location: `${weatherJson.name || coords.lat.toFixed(2)+','+coords.lon.toFixed(2)}${weatherJson.sys?.country ? (', ' + weatherJson.sys.country) : ''}`,
+          tempC: weatherJson.main?.temp != null ? Math.round(weatherJson.main.temp) : '—',
+          condition: weatherJson.weather?.[0]?.main || weatherJson.weather?.[0]?.description || '—',
+         aqi: owmAqi,
+          owm_aqi_scale: owmAqi,
+          pollutants
+        };
+      } catch (err) {
+        console.error("❌ getRealtimeAQI error", err);
+        // fallback mock
+        const base = 80 + Math.round(Math.random()*40);
+        return {
+          timestamp: Date.now(),
+          location: "Offline",
+          tempC: 26,
+          condition: "Unknown",
+          aqi: base,
+          owm_aqi_scale: 3,
+          pollutants: {
+            "PM2.5": (4 + Math.random()*40).toFixed(1),
+            "PM10": (20 + Math.random()*80).toFixed(1),
+            "NO2": (4 + Math.random()*40).toFixed(1),
+            "SO2": (1 + Math.random()*10).toFixed(1),
+            "O3": (10 + Math.random()*80).toFixed(1),
+            "CO": (0.1 + Math.random()*2).toFixed(2)
+          }
+        };
+      }
+    }
+
+    /***********************************************
+     * ML Backend (Predicted AQI & hourly series)
+     ***********************************************/
+    async function getPredictedAQI({ city, coords } = {}) {
+      try {
+        if (!ML_BACKEND_URL || ML_BACKEND_URL.trim() === "") {
+          throw new Error("ML backend URL not configured (ML_BACKEND_URL).");
+        }
+
+        // Allow both absolute and relative ML_BACKEND_URL values
+        const url = new URL(ML_BACKEND_URL, window.location.origin);
+
+        // Attach query params if provided
+        if (city) {
+          url.searchParams.set('city', city);
+        } else if (coords && coords.lat != null && coords.lon != null) {
+          url.searchParams.set('lat', coords.lat);
+          url.searchParams.set('lon', coords.lon);
+        } else if (state.currentCoords && state.currentCoords.lat != null) {
+          // fallback to state's current coords
+          url.searchParams.set('lat', state.currentCoords.lat);
+          url.searchParams.set('lon', state.currentCoords.lon);
+        } else if (state.currentCity) {
+          url.searchParams.set('city', state.currentCity);
+        } else {
+          throw new Error("No city or coords available for prediction request.");
+        }
+
+        const resp = await fetch(url.toString(), { method: 'GET' });
+        if (!resp.ok) throw new Error('ML backend fetch failed: ' + resp.status);
+        const json = await resp.json();
+        const hourly = (json.hourly || []).map(h => ({ t: Number(h.t), aqi: Number(h.aqi) }));
+        const nextHour = Number(json.nextHour ?? (hourly[0] ? hourly[0].aqi : null));
+        return { 
+          timestamp: json.timestamp || Date.now(), 
+          nextHour, 
+          hourly, 
+          pollutants: json.pollutants || {},
+          data_sources: json.data_sources || { cpcb: null, openweather: null }
+        };
+      } catch (err) {
+        console.error("getPredictedAQI error", err);
+        // fallback generation (keeps UI functional)
+        const now = Date.now();
+        let last = 90;
+        const hourly = [];
+        for (let i=1;i<=24;i++){
+          const change = Math.round((Math.random()-0.45)*18);
+          last = Math.max(5, Math.min(500, last + change));
+          hourly.push({ t: now + i*3600000, aqi: last });
+        }
+        return { timestamp: now, nextHour: hourly[0].aqi, hourly, pollutants: {} };
+      }
+    }
+
+    /***********************************************
+     * Rendering & UI updates (same as previous)
+     ***********************************************/
+    function updateHeader(){
+      const locEl = document.getElementById('location');
+      const timeEl = document.getElementById('time');
+      locEl.textContent = state.realtime.location || (state.currentCity || "Unknown");
+      const opts = { hour: '2-digit', minute: '2-digit', weekday:'short', day:'numeric', month:'short', timeZone: 'Asia/Kolkata' };
+      timeEl.textContent = new Intl.DateTimeFormat('en-GB', opts).format(new Date());
+      document.getElementById('cur-temp').textContent = state.realtime.tempC + "°C";
+      document.getElementById('cur-cond').textContent = state.realtime.condition;
+      const icon = document.getElementById('weather-icon');
+      const cond = (state.realtime.condition || '').toLowerCase();
+      if (cond.includes("clear")) icon.innerHTML = sunSvg();
+      else if (cond.includes("cloud")) icon.innerHTML = cloudSvg();
+      else if (cond.includes("rain")) icon.innerHTML = rainSvg();
+      else icon.innerHTML = hazeSvg();
+    }
+
+   function updateAQICards() {
+  // Defensive check: ensure state and pollutants exist
+  if (!state.realtime || !state.realtime.pollutants) {
+    console.error("❌ ERROR: state.realtime or pollutants is null!", { realtime: state.realtime });
+    document.getElementById('liveAQI').textContent = "--";
+    document.getElementById('liveCat').textContent = "Error";
+    document.getElementById('predAQI').textContent = "--";
+    document.getElementById('predCat').textContent = "Error";
+    console.log("LIVE POLLUTANTS:", state.realtime.pollutants);
+    return;
+  }
+
+  console.log("🔍 RAW POLLUTANTS:", state.realtime.pollutants);
+
+  // 🔥 Apply unit conversion BEFORE AQI calc
+  const corrected = convertUnits(state.realtime.pollutants);
+
+  console.log("🔄 CONVERTED POLLUTANTS:", corrected);
+
+  // Check if all pollutants are null - if so, use fallback
+  const hasValidPollutants = Object.values(corrected).some(v => v != null && v > 0);
+  if (!hasValidPollutants) {
+    console.warn("⚠️ All pollutants are null/invalid, using fallback data");
+    // Use fallback mock data
+    const fallbackPollutants = {
+      "PM2.5": 25.4,
+      "PM10": 45.3,
+      "NO2": 15.2,
+      "SO2": 8.1,
+      "O3": 35.6,
+      "CO": 0.8
+    };
+    const correctedFallback = convertUnits(fallbackPollutants);
+    const liveAQI = calculateAQIFromComponents(fallbackPollutants); // Use raw µg/m³ values like training data
+    console.log("📊 FALLBACK LIVE AQI:", liveAQI);
+    document.getElementById('liveAQI').textContent = liveAQI;
+    const liveCat = aqiCategory(liveAQI);
+    document.getElementById('liveCat').textContent = liveCat.name;
+    document.getElementById('liveCat').style.color = liveCat.color;
+    return;
+  }
+
+  // 🔥 Calculate AQI using raw µg/m³ values (like training data)
+  const liveAQI = calculateAQIFromComponents(state.realtime.pollutants);
+
+  console.log("📊 FINAL LIVE AQI:", liveAQI);
+
+  const pred = state.predicted?.nextHour || 0; // 0–500 (ML)
+
+  // ✅ LIVE AQI DISPLAY (ACTUAL VALUE)
+  document.getElementById('liveAQI').textContent = liveAQI;
+
+  // ✅ LIVE CATEGORY
+  const liveCat = aqiCategory(liveAQI);
+  const liveCatEl = document.getElementById('liveCat');
+  liveCatEl.textContent = liveCat.name;
+  liveCatEl.style.color = liveCat.color;
+
+  // ✅ PREDICTED AQI
+  document.getElementById('predAQI').textContent = pred;
+
+  const predCat = aqiCategory(pred);
+  const predCatEl = document.getElementById('predCat');
+  predCatEl.textContent = predCat.name;
+  predCatEl.style.color = predCat.color;
+}
+    function pollutantSeverity(key, value){
+      switch(key){
+        case "PM2.5": return Math.round(value * 2.5);
+        case "PM10": return Math.round(value * 1.2);
+        case "NO2": return Math.round(value * 1.5);
+        case "SO2": return Math.round(value * 2.0);
+        case "O3": return Math.round(value * 1.3);
+        case "CO": return Math.round(value * 30);
+        default: return Math.round(value);
+      }
+    }
+    function unitsFor(key){
+      if (key === "CO") return "ppm";
+      if (key === "NO2" || key === "O3" || key === "SO2") return "ppb";
+      return "µg/m³";
+    }
+    function severityToLabel(s){
+      if (s <= 50) return "Good";
+      if (s <= 100) return "Moderate";
+      if (s <= 150) return "Unhealthy (SG)";
+      if (s <= 200) return "Unhealthy";
+      return "Hazardous";
+    }
+
+    function renderPollutants(){
+      const grid = document.getElementById('pollutantGrid');
+      grid.innerHTML = '';
+      
+      const cpcbData = state.predicted.data_sources?.cpcb;
+      const owData = state.predicted.data_sources?.openweather;
+      
+      const pollutantKeys = ["pm2_5","pm10","no2","so2","o3","co"];
+      const displayNames = {"pm2_5": "PM2.5", "pm10": "PM10", "no2": "NO₂", "so2": "SO₂", "o3": "O₃", "co": "CO"};
+      
+      pollutantKeys.forEach(key => {
+        const owVal = owData ? owData[key] : null;
+        
+        // Use OpenWeather value for severity calculation if available
+        const displayVal = owVal != null ? owVal : 0;
+        const severity = pollutantSeverity(displayNames[key], displayVal);
+        const color = aqiCategory(severity).color || getCssVar('--neon-cyan');
+        const perc = Math.min(100, Math.round((severity / 300) * 100));
+        
+        const el = document.createElement('div');
+        el.className = 'poll-card';
+        el.innerHTML = `
+          <div class="poll-left">
+            <div style="display:flex;flex-direction:column;">
+              <div class="poll-name">${displayNames[key]}</div>
+              <div style="font-size:13px;color:${owVal != null ? '#8a4bff' : '#666'};">
+                ${owVal != null ? `OW: ${owVal.toFixed(1)} ${unitsFor(displayNames[key])}` : 'OW: N/A'}
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <div class="poll-bar" aria-hidden="true"><div class="poll-level" style="width:${perc}%;background:${color}"></div></div>
+            <div style="font-size:12px;color:var(--muted);font-weight:700">${severityToLabel(severity)}</div>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function updateMiniBreakdown(){
+      document.getElementById('miniPM25').textContent = (state.realtime.pollutants["PM2.5"] ?? '--') + " µg/m³";
+      document.getElementById('miniPM10').textContent = (state.realtime.pollutants["PM10"] ?? '--') + " µg/m³";
+      document.getElementById('miniO3').textContent = (state.realtime.pollutants["O3"] ?? '--') + " ppb";
+    }
+  function updateTrendBadge() {
+  // Get calculated AQI values (both on 0-500 scale)
+  const corrected = convertUnits(state.realtime.pollutants);
+  const liveAQI = calculateAQIFromComponents(state.realtime.pollutants); // Use raw µg/m³ values like training data
+  const pred = state.predicted.nextHour;
+
+  const badge = document.getElementById('trendBadge');
+
+  if (pred > liveAQI) {
+    badge.className = 'trend up';
+    badge.innerHTML = '▲ Getting Worse';
+  } 
+  else if (pred < liveAQI) {
+    badge.className = 'trend down';
+    badge.innerHTML = '▼ Improving';
+  } 
+  else {
+    badge.className = 'trend steady';
+    badge.innerHTML = '— Stable';
+  }
+}
+
+function renderAlert() {
+  const aqi = state.predicted.nextHour; // ✅ use predicted AQI
+  const cat = aqiCategory(aqi);
+
+  const container = document.getElementById('sigmaAlertContainer');
+
+  let message = '';
+  let bg = '';
+
+  if (aqi <= 50){
+    message = "Air is clean. Safe to go outside.";
+    bg = "linear-gradient(90deg, rgba(0,200,83,0.12), rgba(0,240,255,0.04))";
+  } 
+  else if (aqi <= 100){
+    message = "Air is acceptable. Sensitive people should take care.";
+    bg = "linear-gradient(90deg, rgba(255,235,59,0.12), rgba(138,75,255,0.02))";
+  } 
+  else if (aqi <= 150){
+    message = "Unhealthy for sensitive groups. Consider limiting outdoor activity.";
+    bg = "linear-gradient(90deg, rgba(255,152,0,0.12), rgba(0,0,0,0.02))";
+  } 
+  else if (aqi <= 200){
+    message = "Air is unhealthy. Avoid prolonged outdoor exposure.";
+    bg = "linear-gradient(90deg, rgba(255,61,0,0.12), rgba(138,75,255,0.02))";
+  } 
+  else {
+    message = "Air quality is very poor. Stay indoors and take precautions.";
+    bg = "linear-gradient(90deg, rgba(142,36,170,0.14), rgba(0,0,0,0.04))";
+  }
+
+  container.innerHTML = `
+    <div class="alert" style="background:${bg}; border:1px solid rgba(255,255,255,0.03);">
+      <div class="left">
+        <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)">
+          ${alertIconFor(aqi)}
+        </div>
+        <div>
+          <div class="meta">${cat.name} — AQI ${aqi}</div>
+          <div class="msg">${message}</div>
+        </div>
+      </div>
+      <div style="text-align:right;color:var(--muted)">
+        <div style="font-weight:800">Stay Safe</div>
+        <div style="font-size:12px">Based on prediction</div>
+      </div>
+    </div>
+  `;
+}  
+
+    function alertIconFor(aqi){
+      if (aqi <= 50) return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00c853" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      if (aqi <= 100) return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 9v4" stroke="#ffeb3b" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#ffeb3b"/></svg>';
+      return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M10 14l2-8 2 8" stroke="#ff3d00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 18v.01" stroke="#ff3d00" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    }
+
+    /***********************************************
+     * Chart rendering (Chart.js)
+     ***********************************************/
+    function renderChart(){
+      const ctx = document.getElementById('aqiChart').getContext('2d');
+      const labels = state.predicted.hourly.map(h => {
+        return new Intl.DateTimeFormat('en-GB', {hour:'2-digit', minute:'2-digit', timeZone:'Asia/Kolkata'}).format(new Date(h.t));
+      });
+      const data = state.predicted.hourly.map(h => h.aqi);
+      const categories = state.predicted.hourly.map(h => aqiCategory(h.aqi).name);
+
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(138,75,255,0.28)');
+      gradient.addColorStop(1, 'rgba(0,240,255,0.02)');
+
+      if (state.chart) {
+        state.chart.data.labels = labels;
+        state.chart.data.datasets[0].data = data;
+        state.chart.update();
+        return;
+      }
+
+      state.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Predicted AQI',
+            data,
+            borderWidth: 2,
+            tension: 0.28,
+            borderColor: getCssVar('--neon-cyan'),
+            pointBackgroundColor: '#081219',
+            pointBorderColor: getCssVar('--neon-cyan'),
+            pointHoverRadius:6,
+            fill: true,
+            backgroundColor: gradient,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive:true,
+          maintainAspectRatio:false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#061018',
+              titleColor: '#dfe7ee',
+              bodyColor: '#cbdaf0',
+              callbacks: {
+                label: function(ctx){
+                  const idx = ctx.dataIndex;
+                  const v = ctx.raw;
+                  const cat = categories[idx];
+                  return ` AQI: ${v} — ${cat}`;
+                },
+                title: function(ctx){
+                  return ctx[0].label;
+                } 
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero:true,
+              max: 400,
+              ticks: { color: '#9aa0a6' },
+              title: { display:true, text:'AQI', color:'#9aa0a6', font:{size:12} },
+              grid: { color:'rgba(255,255,255,0.03)' }
+            },
+            x: {
+              ticks: { color: '#9aa0a6' },
+              grid: { display:false },
+              title: { display:true, text:'Time (Asia/Kolkata)', color:'#9aa0a6', font:{size:12} }
+            }
+          }
+        }
+      });
+    }
+
+    /***********************************************
+     * Main refresh pipeline
+     ***********************************************/
+    async function refreshAllForCoords(coords) {
+      // coords: {lat, lon, name?} or undefined => uses geolocation
+      state.realtime = await getRealtimeAQI(coords);
+      // request predicted AQI for same coords (ML backend may accept lat/lon params)
+      // pass both coords and city when available
+      const predArgs = { coords: coords || state.currentCoords };
+      if (state.currentCity) predArgs.city = state.currentCity;
+      state.predicted = await getPredictedAQI(predArgs);
+      updateHeader();
+      updateAQICards();
+      renderPollutants();
+      updateMiniBreakdown();
+      updateTrendBadge();
+      renderAlert();
+      renderChart();
+    }
+
+    // initial load: try auto geolocation
+    (async () => {
+      const coords = await getCoords();
+      // set a sensible city placeholder (will be updated by getRealtimeAQI if available)
+      state.currentCity = state.currentCity || null;
+      await refreshAllForCoords(coords);
+      // periodic refresh
+      setInterval(async () => {
+        await refreshAllForCoords(state.currentCoords);
+      }, 60_000);
+    })();
+
+    /***********************************************
+     * Back button
+     ***********************************************/
+    function goBack() {
+      if (document.referrer) {
+        window.history.back();
+      } else {
+        window.location.href = "/";
+      }
+    }
+
+    /***********************************************
+     * CONNECT SEARCH UI
+     ***********************************************/
+    document.getElementById('searchBtn').addEventListener('click', async () => {
+      const q = document.getElementById('citySearch').value;
+      if (!q || !q.trim()) return;
+      const g = await geocodeCity(q);
+      if (!g) {
+        alert('City not found. Try a different query.');
+        return;
+      }
+      // update the header location to the human-friendly name immediately
+      document.getElementById('location').textContent = g.name;
+      // ensure state.city set
+      state.currentCity = g.name;
+      // fetch data for the found coords (pass coords)
+      await refreshAllForCoords({ lat: g.lat, lon: g.lon });
+    });
+
+    // Enter key submits search
+    document.getElementById('citySearch').addEventListener('keydown', async (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('searchBtn').click();
+      }
+    });
+
+    /***********************************************
+     * SVG helper icons
+     ***********************************************/
+    function sunSvg(){ return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#ffd166"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="#ffd166" stroke-width="1.2" stroke-linecap="round"/></svg>`; }
+    function cloudSvg(){ return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 17.58A4.42 4.42 0 0015.58 13H8.4A3.4 3.4 0 015 9.6 3.4 3.4 0 018.4 6h.6" stroke="#bcd0ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 17.58A4.42 4.42 0 0015.58 13" stroke="#9aa0a6" stroke-width="1.2"/></svg>`; }
+    function rainSvg(){ return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 16.58A4.42 4.42 0 0015.58 12H8.4A3.4 3.4 0 015 8.6 3.4 3.4 0 018.4 5h.6" stroke="#89c2ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 19l1.5 2M12 19l1.5 2M16 19l1.5 2" stroke="#89c2ff" stroke-width="1.6" stroke-linecap="round"/></svg>`; }
+    function hazeSvg(){ return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 16h14M3 8h12" stroke="#b5bfc8" stroke-width="1.4" stroke-linecap="round"/></svg>`; }
+
+    /***********************************************
+     * End
+     ***********************************************/
+  function openPredictionApp() {
+  window.open("http://127.0.0.1:3000", "_blank");
+}
+  </script>
+  <!-- ALERT MODAL -->
+<div id="alertModal" class="modal hidden">
+  <div class="modal-card glass-card">
+    <h3>Set Your Weather Alerts</h3>
+     <input 
+  id="alertCity"
+  type="text"
+  placeholder="Enter city for alert (e.g. Delhi)"
+  style="margin-bottom:12px"
+/>
+
+    <!-- Alert Type -->
+    <div class="modal-section">
+      <label>
+        <input type="radio" name="alertType" value="voice" onchange="handleAlertType()" />
+        🔊 Voice Alert
+      </label>
+      <label>
+        <input type="radio" name="alertType" value="sms" checked onchange="handleAlertType()" />
+        📩 SMS Alert
+      </label>
+    </div>
+
+    <!-- Voice -->
+   <div id="voiceInput" class="hidden">
+  <input 
+    id="voicePhone"
+    type="tel"
+    placeholder="Enter phone number (+91...)"
+  />
+</div>
+
+    <!-- SMS -->
+    <div id="smsInput" class="hidden">
+      <select onchange="handleSmsChoice(this.value)">
+        <option value="">Select SMS Type</option>
+        <option value="phone">📱 Phone</option>
+        <option value="email">📧 Email</option>
+      </select>
+      <input id="smsValue" class="hidden" placeholder="Enter value" />
+    </div>
+
+    <div class="modal-actions">
+      <button onclick="closeAlertModal()">Cancel</button>
+      <button class="save-btn" onclick="saveAlert()">Save Alert</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

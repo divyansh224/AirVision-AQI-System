@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth - Air Vision System</title>
+
+    <!-- CSS (update path if using folders) -->
+    <link rel="stylesheet" href="/static/login.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="auth-card">
+            
+            <!-- LEFT SIDE -->
+            <div class="visual-side">
+                <div class="visual-content">
+                    <h1>Welcome to <br>Air Vision</h1>
+                    <p>Secure access, real-time monitoring, and personalized air quality alerts.</p>
+                    <ul class="feature-list">
+                        <li>✓ Real-time IoT Sensor Data</li>
+                        <li>✓ AI-Powered Predictions</li>
+                        <li>✓ Instant SMS Alerts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="form-side">
+                
+                <!-- Toggle -->
+                <div class="auth-toggle">
+                    <button id="tab-login" class="active" onclick="switchMode('login')">Login</button>
+                    <button id="tab-signup" onclick="switchMode('signup')">Create Account</button>
+                </div>
+
+                <!-- LOGIN FORM -->
+                <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                    
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="email">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="login-pass" placeholder="Enter password" required autocomplete="current-password">
+                            <span class="toggle-pass" onclick="togglePassword('login-pass')">Show</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Log In</button>
+                    <p id="login-error" class="error-msg"></p>
+                </form>
+
+                <!-- SIGNUP FORM -->
+                <form id="signup-form" class="auth-form hidden" onsubmit="handleSignup(event)">
+                    
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signup-name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="signup-email" placeholder="you@example.com" required autocomplete="email">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" id="signup-pass" placeholder="8+ characters" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="signup-confirm" placeholder="Repeat password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <label class="terms">
+                            <input type="checkbox" required> I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Create Account</button>
+                    <p id="signup-error" class="error-msg"></p>
+                </form>
+
+                <div class="footer">
+                    © 2026 Air Vision System
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/static/login_script.js"></script>
+
+</body>
+</html>

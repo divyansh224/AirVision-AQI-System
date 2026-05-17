@@ -1,0 +1,23 @@
+{
+  "features": [
+    "pm2_5",
+    "pm10",
+    "no2",
+    "o3",
+    "so2",
+    "co"
+  ],
+  "city": "CSV data",
+  "metrics": {
+    "mae": 0.3555577350889845,
+    "mse": 0.976689497615438,
+    "rmse": 0.9882760229892447,
+    "r2": 0.9568578872218948,
+    "train_samples": 96,
+    "test_samples": 24,
+    "total_samples": 120,
+    "city": "CSV data"
+  },
+  "trained_at": "2026-05-06T12:34:58.887290",
+  "data_source": "csv"
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Indoor AQI Dashboard</title>
+
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.status {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #1e293b;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 12px;
+  width: 160px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌿 Indoor Air Quality Dashboard</h1>
+<div class="status" id="status">🔴 Disconnected</div>
+
+<div class="container">
+  <div class="card">
+    <h3>Dust</h3>
+    <p id="pm25">--</p>
+  </div>
+
+  <div class="card">
+    <h3>Gas</h3>
+    <p id="co2">--</p>
+  </div>
+
+  <div class="card">
+    <h3>Temperature</h3>
+    <p id="temp">--</p>
+  </div>
+
+  <div class="card">
+    <h3>Humidity</h3>
+    <p id="humidity">--</p>
+  </div>
+
+  <div class="card">
+    <h3>AQI</h3>
+    <p id="aqi">--</p>
+  </div>
+</div>
+
+<script>
+let lastData = null;
+let lastTimestamp = 0;
+let sameCount = 0;
+
+async function fetchData() {
+  try {
+    const res = await fetch("https://air-monitor-iot-default-rtdb.asia-southeast1.firebasedatabase.app/devices/device1.json");
+    const data = await res.json();
+
+    const statusEl = document.getElementById("status");
+
+    if (!data) {
+      statusEl.innerText = "🔴 No Data";
+      return;
+    }
+
+    let temp = data.temperature ?? 0;
+    let humidity = data.humidity ?? 0;
+    let gas = data.gas ?? 0;
+    let dust = data.dust ?? 0;
+    let timestamp = data.timestamp ?? 0;
+
+    // UI update
+    document.getElementById("temp").innerText = temp + " °C";
+    document.getElementById("humidity").innerText = humidity + " %";
+    document.getElementById("co2").innerText = gas;
+    document.getElementById("pm25").innerText = dust;
+
+    if (!timestamp) {
+      statusEl.innerText = "🟠 No Timestamp";
+      return;
+    }
+
+    // 🧠 Smart detection
+    if (timestamp === lastTimestamp) {
+      sameCount++;
+    } else {
+      sameCount = 0;
+    }
+
+    lastTimestamp = timestamp;
+
+    // 🔥 Increase tolerance (IMPORTANT)
+    if (sameCount > 5) {
+      statusEl.innerText = "🔴 Device Offline";
+      document.getElementById("aqi").innerText = "--";
+      return;
+    }
+
+    // ✅ LIVE
+    let aqi = (dust * 1.2) + (gas * 0.05);
+    aqi = Math.round(Math.max(0, Math.min(aqi, 500)));
+
+    document.getElementById("aqi").innerText = aqi;
+
+    statusEl.innerText = "🟢 Live";
+
+  } catch (err) {
+    document.getElementById("status").innerText = "🔴 Connection Error";
+    console.error(err);
+  }
+}
+setInterval(fetchData, 3000);
+fetchData();
+</script>
+
+</body>
+</html>

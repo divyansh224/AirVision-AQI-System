@@ -1,0 +1,268 @@
+city,pm2_5,pm10,no2,so2,co,o3,nh3,stations,last_updated,data_source
+kadapa,54.0,57.0,21.0,14.0,24.0,0,5.0,"['Yerramukkapalli, Kadapa - APPCB']",1777407579.2856991,cpcb
+machilipatnam,42.0,48.0,10.0,16.0,20.0,0,5.0,"['Srinivas Nagar Colony, Machilipatnam - APPCB']",1777407579.2856991,cpcb
+nellore,37.0,37.0,23.0,10.0,38.0,0,5.0,"['Ambedkar Nagar, Nellore - APPCB ']",1777407579.2856991,cpcb
+rajamahendravaram,16.0,36.0,9.0,6.0,22.0,0,2.0,"['Anand Kala Kshetram, Rajamahendravaram - APPCB']",1777407579.2856991,cpcb
+visakhapatnam,40.0,120.0,55.0,52.0,17.0,0,3.0,"['GVM Corporation, Visakhapatnam - APPCB']",1777407579.2856991,cpcb
+naharlagun,32.0,36.0,7.0,10.0,12.0,0,1.0,"['Naharlagun, Naharlagun - APSPCB']",1777407579.2856991,cpcb
+byrnihat,104.0,78.0,8.0,32.0,57.0,0,4.0,"['Central Academy for SFS, Byrnihat - PCBA', '15th Mile-Nongthymmai, Byrnihat - Meghalaya PCB']",1777407579.2856991,cpcb
+guwahati,48.0,36.0,16.0,35.0,39.0,0,5.0,"['IITG, Guwahati - PCBA', 'Pan Bazaar, Guwahati - PCBA', 'Railway Colony, Guwahati - PCBA', 'LGBI Airport, Guwahati - PCBA']",1777407579.2856991,cpcb
+nagaon,64.0,57.0,1.0,11.0,17.0,0,4.0,"['Christianpatty, Nagaon - PCBA']",1777407579.2856991,cpcb
+nalbari,32.0,35.0,14.0,23.0,22.0,0,6.0,"['Bata Chowk, Nalbari - PCBA']",1777407579.2856991,cpcb
+silchar,24.0,47.0,33.0,6.0,28.0,0,1.0,"['Tarapur, Silchar - PCBA']",1777407579.2856991,cpcb
+sivasagar,21.0,30.0,27.0,8.0,17.0,0,6.0,"['Girls College, Sivasagar - PCBA']",1777407579.2856991,cpcb
+bhagalpur,193.0,140.0,12.0,69.0,83.0,0,7.0,"['Mayaganj, Bhagalpur - BSPCB', 'DM Office_Kachari Chowk, Bhagalpur - BSPCB']",1777407579.2856991,cpcb
+bihar sharif,57.0,43.0,9.0,10.0,51.0,0,3.0,"['D M Colony, Bihar Sharif - BSPCB']",1777407579.2856991,cpcb
+gaya,120.0,176.0,23.0,41.0,14.0,0,4.0,"['Kareemganj, Gaya - BSPCB', 'SFTI Kusdihra, Gaya - BSPCB', 'Collectorate, Gaya - BSPCB']",1777407579.2856991,cpcb
+hajipur,250.0,235.0,15.0,5.0,26.0,0,10.0,"['Industrial Area, Hajipur - BSPCB']",1777407579.2856991,cpcb
+tirumala,49.0,57.0,48.0,9.0,19.0,0,3.0,"['Toll Gate, Tirumala - APPCB']",1777407579.2856991,cpcb
+tirupati,203.0,134.0,28.0,8.0,23.0,0,6.0,"['Vaikuntapuram, Tirupati - APPCB']",1777407579.2856991,cpcb
+vijayawada,73.0,66.0,21.0,20.0,46.0,0,7.0,"['HB Colony, Vijayawada - APPCB', 'Kanuru, Vijayawada - APPCB', 'Rajiv Gandhi Park, Vijayawada - APPCB', 'Rajiv Nagar, Vijayawada - APPCB']",1777407579.2856991,cpcb
+amaravati,28.0,50.0,16.0,15.0,13.0,0,3.0,"['Secretariat, Amaravati - APPCB']",1777407579.2856991,cpcb
+anantapur,64.0,65.0,23.0,9.0,28.0,0,4.0,"['Gulzarpet, Anantapur - APPCB']",1777407579.2856991,cpcb
+chittoor,56.0,54.0,30.0,10.0,18.0,0,5.0,"['Gangineni Cheruvu, Chittoor - APPCB']",1777407579.2856991,cpcb
+eluru,58.0,52.0,12.0,11.0,32.0,0,1.0,"['District Court, Eluru - APPCB']",1777407579.2856991,cpcb
+katihar,0.0,0.0,0.0,0.0,78.0,0,0.0,"['Mirchaibari, Katihar - BSPCB']",1777407579.2856991,cpcb
+manguraha,0.0,0.0,5.0,17.0,32.0,0,1.0,"['Forest Rest House, Manguraha - BSPCB']",1777407579.2856991,cpcb
+motihari,132.0,114.0,4.0,3.0,16.0,0,3.0,"['Gandak Colony, Motihari - BSPCB']",1777407579.2856991,cpcb
+munger,74.0,70.0,5.0,58.0,29.0,0,3.0,"['Town Hall, Munger - BSPCB']",1777407579.2856991,cpcb
+muzaffarpur,239.0,167.0,35.0,11.0,41.0,0,19.0,"['Muzaffarpur Collectorate, Muzaffarpur - BSPCB', 'Buddha Colony, Muzaffarpur - BSPCB', 'MIT-Daudpur Kothi, Muzaffarpur - BSPCB']",1777407579.2856991,cpcb
+patna,295.0,206.0,38.0,13.0,68.0,0,8.0,"['DRM Office Danapur, Patna - BSPCB', 'Govt. High School Shikarpur, Patna - BSPCB', 'Rajbansi Nagar, Patna - BSPCB', 'IGSC Planetarium Complex, Patna - BSPCB', 'Muradpur, Patna - BSPCB', 'Samanpura, Patna - BSPCB']",1777407579.2856991,cpcb
+bettiah,33.0,39.0,8.0,22.0,27.0,0,1.0,"['Kamalnath Nagar, Bettiah - BSPCB']",1777407579.2856991,cpcb
+araria,49.0,95.0,14.0,48.0,13.0,0,6.0,"['Kharahiya Basti, Araria - BSPCB']",1777407579.2856991,cpcb
+arrah,112.0,77.0,7.0,5.0,56.0,0,2.0,"['New DM Office, Arrah - BSPCB']",1777407579.2856991,cpcb
+saharsa,118.0,148.0,7.0,18.0,41.0,0,4.0,"['Police Line, Saharsa - BSPCB']",1777407579.2856991,cpcb
+samastipur,0.0,0.0,0.0,0.0,10.0,0,0.0,"['DM Office_Kasipur, Samastipur - BSPCB']",1777407579.2856991,cpcb
+sasaram,36.0,99.0,3.0,0.0,54.0,0,3.0,"['Dada Peer, Sasaram - BSPCB']",1777407579.2856991,cpcb
+siwan,64.0,111.0,2.0,7.0,54.0,0,1.0,"['Chitragupta Nagar, Siwan - BSPCB']",1777407579.2856991,cpcb
+chandigarh,55.0,95.0,44.0,12.0,62.0,0,20.0,"['Sector 22, Chandigarh - CPCC', 'Sector-25, Chandigarh - CPCC', 'Sector-53, Chandigarh - CPCC']",1777407579.2856991,cpcb
+raipur,54.0,110.0,33.0,50.0,34.0,0,4.0,"['Krishak Nagar, Raipur - CECB', 'Siltara Phase-II, Raipur - CECB', 'AIIMS, Raipur - CECB', 'Bhatagaon New ISBT, Raipur - CECB']",1777407579.2856991,cpcb
+tumidih,68.0,92.0,69.0,10.0,24.0,0,2.0,"['OP Jindal Industrial Park, Tumidih - CECB']",1777407579.2856991,cpcb
+delhi,204.0,276.0,102.0,55.0,96.0,0,26.0,"['Alipur, Delhi - DPCC', 'Anand Vihar, Delhi - DPCC', 'Ashok Vihar, Delhi - DPCC', 'JNU, Delhi - DPCC', 'Jahangirpuri, Delhi - DPCC', 'Jawaharlal Nehru Stadium, Delhi - DPCC', 'Lodhi Road, Delhi - IMD', 'Burari Crossing, Delhi - IMD', 'CRRI Mathura Road, Delhi - IMD', 'Cantonment Area, Delhi - DPCC ', 'Commonwealth Sports Complex, Delhi - DPCC', 'IIT Delhi, Delhi - IITM', 'ITO, Delhi - CPCB', 'IGI Airport (T3), Delhi - IMD', 'Sirifort, Delhi - CPCB', 'Sri Aurobindo Marg, Delhi - DPCC', 'Talkatora Garden, Delhi - DPCC', 'Vivek Vihar, Delhi - DPCC', 'Wazirpur, Delhi - DPCC', 'Major Dhyan Chand National Stadium, Delhi - DPCC', 'Mandir Marg, Delhi - DPCC', 'Mundka, Delhi - DPCC', 'NSIT Dwarka, Delhi - CPCB', 'NSUT Jaffarpur, Delhi - DPCC', 'Narela, Delhi - DPCC', 'Nehru Nagar, Delhi - DPCC', 'Okhla Phase-2, Delhi - DPCC', 'Patparganj, Delhi - DPCC', 'Punjabi Bagh, Delhi - DPCC', 'Pusa, Delhi - IMD', 'R K Puram, Delhi - DPCC', 'DTU, Delhi - CPCB', 'Dr. Karni Singh Shooting Range, Delhi - DPCC', 'Dwarka-Sector 8, Delhi - DPCC ', 'IHBAS, Dilshad Garden, Delhi - CPCB', 'Bawana, Delhi - DPCC', 'Chandni Chowk, Delhi - IITM', 'Shadipur, Delhi - CPCB', 'Sonia Vihar, Delhi - DPCC', 'Najafgarh, Delhi - DPCC', 'North Campus, DU, Delhi - IMD', 'Rohini, Delhi - DPCC', 'IGNOU_Maidan Garhi, Delhi - DPCC', 'Aya Nagar, Delhi - IMD', 'New Moti Bagh, Delhi - MHUA', 'Pusa, Delhi - DPCC']",1777407579.2856991,cpcb
+bhilai,32.0,49.0,31.0,19.0,21.0,0,5.0,"['32Bungalows, Bhilai - CECB', 'Civic Center, Bhilai - Bhilai Steel Plant', 'Hathkhoj, Bhilai - CECB']",1777407579.2856991,cpcb
+bilaspur,83.0,77.0,28.0,14.0,27.0,0,0.0,"['Mangala, Bilaspur - NTPC']",1777407579.2856991,cpcb
+kunjemura,48.0,103.0,43.0,30.0,38.0,0,2.0,"['OP Jindal School, Kunjemura - CECB']",1777407579.2856991,cpcb
+purnia,78.0,62.0,6.0,17.0,59.0,0,2.0,"['Mariam Nagar, Purnia - BSPCB']",1777407579.2856991,cpcb
+rajgir,61.0,58.0,14.0,3.0,42.0,0,3.0,"['Dangi Tola, Rajgir - BSPCB']",1777407579.2856991,cpcb
+gandhinagar,73.0,177.0,32.0,20.0,24.0,0,7.0,"['IIPHG Lekawada, Gandhinagar - IITM', 'GIFT City, Gandhinagar - IITM', 'Sector-10, Gandhinagar - GPCB']",1777407579.2856991,cpcb
+mehsana,54.0,148.0,39.0,9.0,54.0,0,3.0,"['Sadanand Nagar, Mehsana - Nexteng Enviro']",1777407579.2856991,cpcb
+nandesari,140.0,115.0,87.0,6.0,21.0,0,0.0,"['GIDC, Nandesari - Nandesari Ind. Association']",1777407579.2856991,cpcb
+rajkot,67.0,73.0,11.0,19.0,91.0,0,1.0,"['Mavdi, Rajkot - Nexteng Enviro ']",1777407579.2856991,cpcb
+surat,64.0,82.0,17.0,18.0,49.0,0,1.0,"['Katargam, Surat - Nexteng Enviro', 'Science Center, Surat - SMC']",1777407579.2856991,cpcb
+ahmedabad,87.0,123.0,85.0,84.0,42.0,0,11.0,"['Chandkheda, Ahmedabad - IITM', 'Gyaspur, Ahmedabad - IITM', 'Maninagar, Ahmedabad - GPCB', 'Raikhad, Ahmedabad - IITM', 'Rakhial, Ahmedabad - IITM', 'SAC ISRO Bopal, Ahmedabad - IITM', 'SAC ISRO Satellite, Ahmedabad - IITM', 'SVPI Airport Hansol, Ahmedabad - IITM']",1777407579.2856991,cpcb
+vadodara,125.0,122.0,16.0,6.0,81.0,0,3.0,"['Bapunagar, Vadodara - Nexteng Enviro']",1777407579.2856991,cpcb
+vapi,92.0,92.0,26.0,21.0,0.0,0,3.0,"['Phase-1 GIDC, Vapi - GPCB']",1777407579.2856991,cpcb
+vatva,108.0,122.0,62.0,52.0,3.0,0,20.0,"['Phase-4 GIDC, Vatva - GPCB']",1777407579.2856991,cpcb
+ambala,9.0,10.0,10.0,22.0,30.0,0,8.0,"['Patti Mehar, Ambala - HSPCB']",1777407579.2856991,cpcb
+ankleshwar,0.0,0.0,29.0,26.0,41.0,0,6.0,"['GIDC, Ankleshwar - GPCB']",1777407579.2856991,cpcb
+bhavnagar,80.0,135.0,71.0,7.0,108.0,0,4.0,"['Vidhyanagar, Bhavnagar - Nexteng Enviro']",1777407579.2856991,cpcb
+bahadurgarh,169.0,129.0,13.0,6.0,47.0,0,13.0,"['Arya Nagar, Bahadurgarh - HSPCB']",1777407579.2856991,cpcb
+jind,185.0,113.0,38.0,2.0,6.0,0,5.0,"['Police Lines, Jind - HSPCB']",1777407579.2856991,cpcb
+kaithal,93.0,108.0,31.0,82.0,24.0,0,6.0,"['Rishi Nagar, Kaithal - HSPCB']",1777407579.2856991,cpcb
+kurukshetra,106.0,185.0,4.0,18.0,21.0,0,6.0,"['Sector-7, Kurukshetra - HSPCB']",1777407579.2856991,cpcb
+mandikhera,47.0,55.0,22.0,34.0,29.0,0,10.0,"['General Hospital, Mandikhera(Nuh) - HSPCB']",1777407579.2856991,cpcb
+manesar,172.0,113.0,35.0,3.0,14.0,0,13.0,"['Sector-2 IMT, Manesar - HSPCB']",1777407579.2856991,cpcb
+faridabad,218.0,172.0,37.0,8.0,63.0,0,11.0,"['Sector 11, Faridabad - HSPCB', 'Sector 30, Faridabad - HSPCB', 'New Industrial Town, Faridabad - HSPCB']",1777407579.2856991,cpcb
+gurugram,276.0,194.0,26.0,11.0,93.0,0,16.0,"['NISE Gwal Pahari, Gurugram - IMD', 'Sector-51, Gurugram - HSPCB', 'Vikas Sadan, Gurugram - HSPCB', 'Teri Gram, Gurugram - HSPCB']",1777407579.2856991,cpcb
+hisar,66.0,66.0,32.0,13.0,26.0,0,13.0,"['Urban Estate-II, Hisar - HSPCB']",1777407579.2856991,cpcb
+chamarajanagar,38.0,51.0,23.0,4.0,24.0,0,2.0,"['Urban, Chamarajanagar - KSPCB']",1777407579.2856991,cpcb
+chikkaballapur,61.0,84.0,4.0,21.0,32.0,0,1.0,"['Chikkaballapur Rural, Chikkaballapur - KSPCB']",1777407579.2856991,cpcb
+chikkamagaluru,0.0,0.0,21.0,0.0,19.0,0,2.0,"['Kalyana Nagara, Chikkamagaluru - KSPCB']",1777407579.2856991,cpcb
+dharwad,87.0,91.0,28.0,7.0,57.0,0,7.0,"['Kalabhavan, Dharwad - KSPCB']",1777407579.2856991,cpcb
+hubballi,39.0,55.0,8.0,2.0,20.0,0,1.0,"['Lingaraj Nagar, Hubballi - KSPCB']",1777407579.2856991,cpcb
+srinagar,43.0,92.0,21.0,4.0,17.0,0,0.0,"['Rajbagh, Srinagar - JKPCC', 'Khunmoh, Srinagar - JKPCC']",1777407579.2856991,cpcb
+dhanbad,0.0,0.0,0.0,0.0,69.0,0,0.0,"['Sardar Patel Nagar, Dhanbad - JSPCB']",1777407579.2856991,cpcb
+jorapokhar,57.0,105.0,8.0,0.0,39.0,0,3.0,"['Tata Stadium, Jorapokhar - JSPCB']",1777407579.2856991,cpcb
+bagalkot,34.0,52.0,11.0,7.0,26.0,0,1.0,"['Vidayagiri, Bagalkot - KSPCB']",1777407579.2856991,cpcb
+belgaum,53.0,69.0,57.0,45.0,0.0,0,8.0,"['Ramteerth Nagar, Belgaum - KSPCB']",1777407579.2856991,cpcb
+bengaluru,80.0,107.0,75.0,26.0,60.0,0,5.0,"['BTM Layout, Bengaluru - CPCB', 'BWSSB Kadabesanahalli, Bengaluru - CPCB', 'Bapuji Nagar, Bengaluru - KSPCB', 'Hebbal, Bengaluru - KSPCB', 'Hombegowda Nagar, Bengaluru - KSPCB', 'Jigani, Bengaluru - KSPCB', 'Kasturi Nagar, Bengaluru - KSPCB', 'Sanegurava Halli, Bengaluru - KSPCB', 'Silk Board, Bengaluru - KSPCB', 'Jayanagar 5th Block, Bengaluru - KSPCB', 'RVCE-Mailasandra, Bengaluru - KSPCB', 'Shivapura_Peenya, Bengaluru - KSPCB', 'City Railway Station, Bengaluru - KSPCB']",1777407579.2856991,cpcb
+rohtak,241.0,119.0,12.0,12.0,35.0,0,0.0,"['MD University, Rohtak - HSPCB']",1777407579.2856991,cpcb
+sirsa,39.0,59.0,18.0,15.0,61.0,0,13.0,"['F-Block, Sirsa - HSPCB']",1777407579.2856991,cpcb
+sonipat,77.0,124.0,12.0,8.0,47.0,0,21.0,"['Murthal, Sonipat - HSPCB']",1777407579.2856991,cpcb
+yamuna nagar,172.0,142.0,21.0,15.0,31.0,0,3.0,"['Gobind Pura, Yamuna Nagar - HSPCB']",1777407579.2856991,cpcb
+baddi,185.0,222.0,27.0,23.0,39.0,0,3.0,"['HIMUDA Complex Phase-1, Baddi - HPPCB']",1777407579.2856991,cpcb
+narnaul,128.0,100.0,26.0,8.0,46.0,0,5.0,"['Shastri Nagar, Narnaul - HSPCB']",1777407579.2856991,cpcb
+panchgaon,128.0,116.0,6.0,25.0,24.0,0,3.0,"['Amity University, Panchgaon - IITM']",1777407579.2856991,cpcb
+panchkula,97.0,0.0,24.0,14.0,23.0,0,0.0,"['Sector-6, Panchkula - HSPCB ']",1777407579.2856991,cpcb
+bhiwani,33.0,28.0,9.0,8.0,7.0,0,10.0,"['H.B. Colony, Bhiwani - HSPCB']",1777407579.2856991,cpcb
+dharuhera,119.0,101.0,38.0,7.0,73.0,0,19.0,"['Municipal Corporation Office, Dharuhera -  HSPCB']",1777407579.2856991,cpcb
+kalaburagi,37.0,49.0,16.0,4.0,41.0,0,3.0,"['Mahatma Basaveswar Colony, Kalaburgi - KSPCB']",1777407579.2856991,cpcb
+madikeri,25.0,22.0,0.0,7.0,15.0,0,0.0,"['Stuart Hill, Madikeri - KSPCB']",1777407579.2856991,cpcb
+mangalore,45.0,42.0,8.0,0.0,0.0,0,2.0,"['Kadri, Mangalore - KSPCB']",1777407579.2856991,cpcb
+mysuru,29.0,68.0,19.0,3.0,18.0,0,4.0,"['Hebbal 1st Stage, Mysuru - KSPCB']",1777407579.2856991,cpcb
+ramanagara,62.0,73.0,16.0,22.0,18.0,0,4.0,"['Vijay Nagar, Ramanagara - KSPCB']",1777407579.2856991,cpcb
+shivamogga,26.0,44.0,21.0,3.0,12.0,0,2.0,"['Vinoba Nagara, Shivamogga - KSPCB']",1777407579.2856991,cpcb
+aurangabad,85.0,85.0,32.0,34.0,102.0,0,16.0,"['More Chowk Waluj, Aurangabad - MPCB', 'Rachnakar Colony, Aurangabad - MPCB', 'Gurdeo Nagar, Aurangabad - BSPCB']",1777407579.2856991,cpcb
+badlapur,53.0,90.0,21.0,8.0,33.0,0,6.0,"['Katrap, Badlapur - MPCB']",1777407579.2856991,cpcb
+belapur,0.0,0.0,0.0,0.0,31.0,0,0.0,"['CBD Belapur, Belapur - MPCB']",1777407579.2856991,cpcb
+bhiwandi,68.0,89.0,20.0,8.0,16.0,0,6.0,"['Gokul Nagar, Bhiwandi - MPCB']",1777407579.2856991,cpcb
+boisar,49.0,58.0,19.0,20.0,32.0,0,3.0,"['Khaira, Boisar - MPCB']",1777407579.2856991,cpcb
+ratlam,46.0,87.0,17.0,39.0,0.0,0,0.0,"['Shasthri Nagar, Ratlam - IPCA Lab']",1777407579.2856991,cpcb
+sagar,54.0,84.0,20.0,10.0,15.0,0,2.0,"['Civil Lines, Sagar - MPPCB']",1777407579.2856991,cpcb
+satna,50.0,70.0,12.0,23.0,21.0,0,0.0,"['Bandhavgar Colony, Satna - Birla Cement']",1777407579.2856991,cpcb
+singrauli,72.0,143.0,23.0,36.0,53.0,0,3.0,"['Suryakiran Bhawan NCL, Singrauli - MPPCB']",1777407579.2856991,cpcb
+ujjain,70.0,78.0,45.0,5.0,18.0,0,11.0,"['Mahashweta Nagar, Ujjain - MPPCB']",1777407579.2856991,cpcb
+ahmednagar,0.0,96.0,21.0,8.0,18.0,0,6.0,"['Tarakpur, Ahmednagar - MPCB']",1777407579.2856991,cpcb
+akola,80.0,81.0,14.0,20.0,19.0,0,7.0,"['Ramdaspeth, Akola - MPCB']",1777407579.2856991,cpcb
+ambernath,52.0,61.0,47.0,12.0,12.0,0,6.0,"['Chinchpada, Ambernath - MPCB']",1777407579.2856991,cpcb
+amravati,52.0,80.0,20.0,20.0,30.0,0,4.0,"['Shivneri Colony, Amravati - MPCB', 'Shri Shivaji Science College, Amravati - MPCB']",1777407579.2856991,cpcb
+vijayapura,30.0,39.0,11.0,3.0,30.0,0,4.0,"['Ibrahimpur, Vijayapura - KSPCB']",1777407579.2856991,cpcb
+yadgir,58.0,86.0,26.0,12.0,27.0,0,1.0,"['Collector Office, Yadgir - KSPCB']",1777407579.2856991,cpcb
+kannur,83.0,70.0,15.0,2.0,16.0,0,2.0,"['Thavakkara, Kannur - Kerala PCB']",1777407579.2856991,cpcb
+kollam,0.0,0.0,0.0,0.0,16.0,0,0.0,"['Polayathode, Kollam - Kerala PCB']",1777407579.2856991,cpcb
+thiruvananthapuram,31.0,47.0,0.0,20.0,58.0,0,0.0,"['Kariavattom, Thiruvananthapuram - Kerala PCB', 'Plammoodu, Thiruvananthapuram - Kerala PCB']",1777407579.2856991,cpcb
+dewas,59.0,97.0,96.0,23.0,29.0,0,4.0,"['Bhopal Chauraha, Dewas - MPPCB']",1777407579.2856991,cpcb
+gwalior,77.0,113.0,59.0,40.0,36.0,0,5.0,"['Deen Dayal Nagar, Gwalior - MPPCB', 'Maharaj Bada, Gwalior - MPPCB']",1777407579.2856991,cpcb
+indore,84.0,94.0,86.0,23.0,49.0,0,17.0,"['Chhoti Gwaltoli, Indore - MPPCB', 'Regional Park, Indore - IMC', 'Airport Area, Indore - IMC', 'Maguda Nagar, Indore - IMC', 'Residency Area, Indore - IMC']",1777407579.2856991,cpcb
+bhopal,63.0,110.0,37.0,27.0,64.0,0,7.0,"['Paryavaran Parisar, Bhopal - MPPCB', 'T T Nagar, Bhopal - MPPCB', 'Idgah Hills, Bhopal - MPPCB']",1777407579.2856991,cpcb
+jabalpur,54.0,108.0,49.0,22.0,65.0,0,6.0,"['Marhatal, Jabalpur - MPPCB', 'Suhagi, Jabalpur - JMC', 'Govindh Bhavan Colony, Jabalpur - JMC', 'Gupteshwar, Jabalpur - JMC']",1777407579.2856991,cpcb
+mandideep,76.0,84.0,33.0,16.0,12.0,0,7.0,"['Sector-D Industrial Area, Mandideep - MPPCB']",1777407579.2856991,cpcb
+mahad,61.0,103.0,15.0,43.0,44.0,0,5.0,"['Kamble Tarf Birwadi, Mahad - MPCB']",1777407579.2856991,cpcb
+malegaon,81.0,109.0,17.0,0.0,19.0,0,0.0,"['Mahesh Nagar, Malegaon - MPCB']",1777407579.2856991,cpcb
+mira-bhayandar,56.0,76.0,19.0,8.0,20.0,0,5.0,"['Bhayandar West, Mira-Bhayandar - MPCB']",1777407579.2856991,cpcb
+mumbai,183.0,191.0,45.0,50.0,80.0,0,29.0,"['Bandra Kurla Complex, Mumbai - MPCB', 'Borivali East, Mumbai - IITM', 'Borivali East, Mumbai - MPCB', 'Chakala-Andheri East, Mumbai - IITM', 'Chembur, Mumbai - MPCB', 'Colaba, Mumbai - MPCB', 'Deonar, Mumbai - IITM', 'Malad West, Mumbai - IITM', 'Mazgaon, Mumbai - IITM', 'Mindspace-Malad West, Mumbai - MPCB', 'Powai, Mumbai - MPCB', 'Sewri, Mumbai - BMC', 'Shivaji Nagar, Mumbai - BMC', 'Siddharth Nagar-Worli, Mumbai - IITM', 'Vile Parle West, Mumbai - MPCB', 'Worli, Mumbai -MPCB', 'Ghatkopar, Mumbai - BMC', 'Kherwadi_Bandra East, Mumbai - MPCB', 'Khindipada-Bhandup West, Mumbai - IITM', 'Kurla, Mumbai - MPCB', 'Kandivali West, Mumbai - BMC', 'Sion, Mumbai - MPCB', 'Byculla, Mumbai - BMC', 'Chhatrapati Shivaji Intl. Airport (T2), Mumbai - MPCB', 'Navy Nagar-Colaba, Mumbai - IITM', 'Bandra Kurla Complex, Mumbai - IITM', 'Mulund West, Mumbai - MPCB']",1777407579.2856991,cpcb
+nashik,77.0,85.0,12.0,25.0,34.0,0,3.0,"['Hirawadi, Nashik - MPCB', 'MIDC Ambad, Nashik - MPCB', 'Pandav Nagari, Nashik - MPCB', 'Gangapur Road, Nashik - MPCB']",1777407579.2856991,cpcb
+navi mumbai,103.0,123.0,59.0,18.0,50.0,0,7.0,"['Kopripada-Vashi, Navi Mumbai - MPCB', 'Nerul, Navi Mumbai - MPCB', 'Sanpada, Navi Mumbai - MPCB', 'Sector-2E Kalamboli, Navi Mumbai - MPCB', 'Tondare-Taloja, Navi Mumbai - MPCB', 'Mahape, Navi Mumbai - MPCB']",1777407579.2856991,cpcb
+chandrapur,104.0,128.0,36.0,0.0,38.0,0,2.0,"['Chauhan Colony, Chandrapur - MPCB', 'MIDC Khutala, Chandrapur - MPCB']",1777407579.2856991,cpcb
+dhule,79.0,109.0,17.0,14.0,11.0,0,1.0,"['Deopur, Dhule - MPCB']",1777407579.2856991,cpcb
+hingoli,23.0,30.0,12.0,3.0,14.0,0,2.0,"['Ashta Vinayak Nagar, Hingoli - MPCB']",1777407579.2856991,cpcb
+jalgaon,65.0,86.0,13.0,12.0,29.0,0,2.0,"['Prabhat Colony, Jalgaon - MPCB']",1777407579.2856991,cpcb
+nagpur,114.0,104.0,53.0,58.0,38.0,0,13.0,"['Mahal, Nagpur - MPCB', 'Ram Nagar, Nagpur - MPCB', 'Ambazari, Nagpur - MPCB', 'Opp GPO Civil Lines, Nagpur - MPCB']",1777407579.2856991,cpcb
+nanded,76.0,121.0,44.0,20.0,22.0,0,4.0,"['Sneh Nagar, Nanded - MPCB']",1777407579.2856991,cpcb
+kalyan,152.0,141.0,36.0,0.0,0.0,0,1.0,"['Khadakpada, Kalyan - MPCB']",1777407579.2856991,cpcb
+kolhapur,51.0,54.0,7.0,6.0,33.0,0,3.0,"['Shivaji University, Kolhapur - MPCB', 'Sinchan Bhavan, Kolhapur - MPCB']",1777407579.2856991,cpcb
+latur,64.0,59.0,22.0,6.0,14.0,0,7.0,"['Sawe Wadi, Latur - MPCB']",1777407579.2856991,cpcb
+suakati,174.0,143.0,10.0,15.0,20.0,0,4.0,"['OMC Colony, Suakati - OSPCB']",1777407579.2856991,cpcb
+talcher,76.0,81.0,32.0,9.0,73.0,0,5.0,"['Talcher Coalfields,Talcher - OSPCB']",1777407579.2856991,cpcb
+tensa,46.0,0.0,0.0,0.0,43.0,0,0.0,"['Barsua Iron Ore Mines, Tensa - OSPCB']",1777407579.2856991,cpcb
+puducherry,14.0,21.0,11.0,7.0,18.0,0,3.0,"['Jawahar Nagar, Puducherry - PPCC']",1777407579.2856991,cpcb
+amritsar,59.0,86.0,128.0,16.0,29.0,0,10.0,"['Golden Temple, Amritsar - PPCB']",1777407579.2856991,cpcb
+bhubaneswar,43.0,66.0,11.0,6.0,83.0,0,6.0,"['Lingraj Mandir, Bhubaneswar - OSPCB', 'Patia, Bhubaneswar - OSPCB']",1777407579.2856991,cpcb
+bileipada,0.0,0.0,0.0,0.0,36.0,0,0.0,"['Tata Township, Bileipada - OSPCB']",1777407579.2856991,cpcb
+brajrajnagar,49.0,64.0,14.0,20.0,33.0,0,6.0,"['GM Office, Brajrajnagar - OSPCB']",1777407579.2856991,cpcb
+byasanagar,47.0,66.0,9.0,15.0,92.0,0,2.0,"['Ferro Chrome Colony, Byasanagar - OSPCB']",1777407579.2856991,cpcb
+cuttack,33.0,90.0,8.0,8.0,71.0,0,2.0,"['CDA Area, Cuttack - OSPCB']",1777407579.2856991,cpcb
+parbhani,91.0,117.0,20.0,18.0,12.0,0,4.0,"['Masoom Colony, Parbhani - MPCB']",1777407579.2856991,cpcb
+pimpri-chinchwad,107.0,117.0,52.0,9.0,54.0,0,12.0,"['Bhosari,Pimpri-Chinchwad - IITM', 'Bhumkar Nagar, Pimpri-Chinchwad - IITM', 'Savta Mali Nagar, Pimpri-Chinchwad - IITM', 'Thergaon, Pimpri Chinchwad - MPCB', 'Gavalinagar, Pimpri Chinchwad - MPCB', 'Transport Nagar-Nigdi, Pimpri-Chinchwad- IITM', 'Park Street Wakad, Pimpri Chinchwad - MPCB']",1777407579.2856991,cpcb
+sangli,47.0,58.0,12.0,22.0,20.0,0,6.0,"['Vijay Nagar, Sangli - MPCB']",1777407579.2856991,cpcb
+satara,48.0,59.0,22.0,2.0,25.0,0,7.0,"['Koyana Nagar, Satara - MPCB']",1777407579.2856991,cpcb
+solapur,86.0,107.0,68.0,7.0,21.0,0,21.0,"['Dnyaneshwar Nagar, Solapur - MPCB', 'Ratandeep Housing Society, Solapur - MPCB']",1777407579.2856991,cpcb
+thane,55.0,118.0,6.0,8.0,26.0,0,3.0,"['Kasarvadavali, Thane - MPCB', 'Upvan Fort, Thane - MPCB']",1777407579.2856991,cpcb
+nayagarh,73.0,113.0,4.0,12.0,15.0,0,7.0,"['Dabuna, Nayagarh - OSPCB']",1777407579.2856991,cpcb
+rairangpur,42.0,62.0,11.0,8.0,26.0,0,1.0,"['Divisional Forest Office, Rairangpur - OSPCB']",1777407579.2856991,cpcb
+rourkela,86.0,89.0,15.0,6.0,48.0,0,1.0,"['Raghunathpali, Rourkela - OSPCB', 'Fertilizer Township, Rourkela - OSPCB', 'Sector-2, Rourkela - OSPCB']",1777407579.2856991,cpcb
+ulhasnagar,69.0,90.0,24.0,10.0,19.0,0,5.0,"['Sidhi Vinayak Nagar, Ulhasnagar - MPCB', 'Vithalwadi, Ulhasnagar - MPCB']",1777407579.2856991,cpcb
+virar,44.0,62.0,24.0,3.0,15.0,0,5.0,"['Bolinj, Virar - MPCB']",1777407579.2856991,cpcb
+shillong,23.0,0.0,33.0,34.0,14.0,0,0.0,"['JN Stadium, Shillong - Meghalaya PCB', 'Lumpyngngad, Shillong - Meghalaya PCB']",1777407579.2856991,cpcb
+pune,81.0,92.0,41.0,5.0,66.0,0,2.0,"['Dhankawadi, Pune - IITM', 'Revenue Colony-Shivajinagar, Pune - IITM', 'Mhada Colony, Pune - IITM', 'Panchawati_Pashan, Pune - IITM', 'Savitribai Phule Pune University, Pune - MPCB', 'Hadapsar, Pune - IITM']",1777407579.2856991,cpcb
+angul,70.0,75.0,15.0,17.0,46.0,0,2.0,"['Hakimapada, Angul - OSPCB']",1777407579.2856991,cpcb
+balasore,44.0,70.0,11.0,15.0,50.0,0,0.0,"['Kalidaspur, Balasore - OSPCB']",1777407579.2856991,cpcb
+barbil,96.0,118.0,20.0,21.0,22.0,0,2.0,"['Forest Office, Barbil - OSPCB']",1777407579.2856991,cpcb
+kota,130.0,107.0,52.0,21.0,53.0,0,11.0,"['Dhanmandi, Kota - RSPCB', 'Nayapura, Kota - RSPCB', 'Shrinath Puram, Kota - RSPCB']",1777407579.2856991,cpcb
+nagaur,42.0,113.0,22.0,6.0,12.0,0,9.0,"['Karni Colony, Nagaur - RSPCB']",1777407579.2856991,cpcb
+pali,83.0,113.0,15.0,6.0,28.0,0,3.0,"['Indira Colony Vistar, Pali - RSPCB']",1777407579.2856991,cpcb
+hanumangarh,125.0,136.0,24.0,10.0,15.0,0,6.0,"['Housing Board, Hanumangarh - RSPCB']",1777407579.2856991,cpcb
+jaipur,134.0,162.0,74.0,34.0,76.0,0,67.0,"['Adarsh Nagar, Jaipur - RSPCB', 'Mansarovar Sector-12, Jaipur - RSPCB', 'Police Commissionerate, Jaipur - RSPCB', 'RIICO Sitapura, Jaipur - RSPCB', 'Shastri Nagar, Jaipur - RSPCB', 'Sector-2 Murlipura, Jaipur - RSPCB']",1777407579.2856991,cpcb
+alwar,61.0,104.0,44.0,20.0,28.0,0,8.0,"['Moti Doongri, Alwar - RSPCB']",1777407579.2856991,cpcb
+banswara,49.0,94.0,32.0,6.0,26.0,0,4.0,"['Rati Talai, Banswara - RSPCB']",1777407579.2856991,cpcb
+baran,104.0,123.0,34.0,18.0,20.0,0,3.0,"['Bamboliya, Baran - RSPCB']",1777407579.2856991,cpcb
+barmer,26.0,85.0,10.0,3.0,19.0,0,5.0,"['Railway Colony, Barmer - RSPCB']",1777407579.2856991,cpcb
+bharatpur,30.0,103.0,24.0,11.0,21.0,0,8.0,"['Krishna Nagar, Bharatpur - RSPCB']",1777407579.2856991,cpcb
+bhilwara,33.0,109.0,28.0,14.0,36.0,0,5.0,"['Pratap Nagar, Bhilwara - RSPCB']",1777407579.2856991,cpcb
+bhiwadi,168.0,175.0,37.0,18.0,25.0,0,8.0,"['RIICO Ind. Area III, Bhiwadi - RSPCB', 'Vasundhara Nagar_UIT, Bhiwadi - RSPCB']",1777407579.2856991,cpcb
+bikaner,0.0,0.0,0.0,0.0,25.0,0,0.0,"['MM Ground, Bikaner - RSPCB']",1777407579.2856991,cpcb
+bundi,37.0,82.0,46.0,11.0,11.0,0,3.0,"['New Colony, Bundi - RSPCB']",1777407579.2856991,cpcb
+bathinda,57.0,153.0,19.0,10.0,74.0,0,0.0,"['Hardev Nagar, Bathinda - PPCB']",1777407579.2856991,cpcb
+jalandhar,58.0,64.0,33.0,20.0,38.0,0,5.0,"['Civil Line, Jalandhar - PPCB']",1777407579.2856991,cpcb
+ludhiana,86.0,100.0,49.0,14.0,40.0,0,12.0,"['Punjab Agricultural University, Ludhiana - PPCB']",1777407579.2856991,cpcb
+patiala,54.0,107.0,18.0,12.0,14.0,0,6.0,"['Model Town, Patiala - PPCB']",1777407579.2856991,cpcb
+chittorgarh,40.0,79.0,21.0,8.0,13.0,0,16.0,"['Shastri Nagar, Chittorgarh - RSPCB']",1777407579.2856991,cpcb
+churu,66.0,127.0,17.0,6.0,17.0,0,6.0,"['Subash Chowk, Churu - RSPCB']",1777407579.2856991,cpcb
+dausa,56.0,96.0,51.0,8.0,36.0,0,11.0,"['Khatikan Mohalla, Dausa - RSPCB']",1777407579.2856991,cpcb
+dungarpur,34.0,75.0,17.0,5.0,24.0,0,13.0,"['Bhoiwada, Dungarpur - RSPCB']",1777407579.2856991,cpcb
+jaisalmer,0.0,118.0,22.0,3.0,17.0,0,15.0,"['Sadar Bazar, Jaisalmer - RSPCB']",1777407579.2856991,cpcb
+jhalawar,45.0,88.0,30.0,20.0,24.0,0,7.0,"['Rajlaxmi Nagar, Jhalawar - RSPCB']",1777407579.2856991,cpcb
+jhunjhunu,58.0,117.0,22.0,7.0,7.0,0,8.0,"['Indra Nagar, Jhunjhunu - RSPCB']",1777407579.2856991,cpcb
+jodhpur,62.0,102.0,23.0,7.0,80.0,0,9.0,"['Jhalamand, Jodhpur - RSPCB', 'Samrat Ashok Udhyan, Jodhpur - RSPCB', 'Collectorate, Jodhpur - RSPCB', 'Mandor, Jodhpur - RSPCB', 'Digari Kalan, Jodhpur - RSPCB']",1777407579.2856991,cpcb
+pratapgarh,44.0,106.0,16.0,7.0,12.0,0,8.0,"['Pragati Nagar, Pratapgarh - RSPCB']",1777407579.2856991,cpcb
+hyderabad,72.0,94.0,26.0,21.0,40.0,0,6.0,"['New Malakpet, Hyderabad - TSPCB', 'Ramachandrapuram, Hyderabad - TSPCB', 'Sanathnagar, Hyderabad - TSPCB', 'Zoo Park, Hyderabad - TSPCB', 'ICRISAT Patancheru, Hyderabad - TSPCB', 'Kokapet, Hyderabad - TSPCB', 'Kompally Municipal Office, Hyderabad - TSPCB', 'Nacharam_TSIIC IALA, Hyderabad - TSPCB', 'Central University, Hyderabad - TSPCB', 'ECIL Kapra, Hyderabad - TSPCB', 'Somajiguda, Hyderabad - TSPCB', 'IDA Pashamylaram, Hyderabad - TSPCB', 'IITH Kandi, Hyderabad - TSPCB']",1777407579.2856991,cpcb
+agartala,64.0,85.0,18.0,3.0,16.0,0,4.0,"['Bardowali, Agartala - Tripura SPCB']",1777407579.2856991,cpcb
+chennai,59.0,71.0,14.0,14.0,47.0,0,6.0,"['Perungudi, Chennai - TNPCB', 'Royapuram, Chennai - TNPCB', 'Velachery Res. Area, Chennai - CPCB', 'Kodungaiyur, Chennai - TNPCB', 'Manali Village, Chennai - TNPCB', 'Manali, Chennai - CPCB', 'Arumbakkam, Chennai - TNPCB']",1777407579.2856991,cpcb
+coimbatore,51.0,54.0,14.0,24.0,33.0,0,1.0,"['SIDCO Kurichi, Coimbatore - TNPCB']",1777407579.2856991,cpcb
+gummidipoondi,87.0,95.0,19.0,19.0,0.0,0,1.0,"['Anthoni Pillai Nagar, Gummidipoondi - TNPCB']",1777407579.2856991,cpcb
+agra,128.0,177.0,37.0,101.0,33.0,0,17.0,"['Manoharpur, Agra - UPPCB', 'Sanjay Palace, Agra - UPPCB', 'Sector-3B Avas Vikas Colony, Agra - UPPCB', 'Shahjahan Garden, Agra - UPPCB', 'Shastripuram, Agra - UPPCB', 'Rohta, Agra - UPPCB']",1777407579.2856991,cpcb
+baghpat,128.0,250.0,27.0,43.0,46.0,0,2.0,"['Sardar Patel Inter College, Baghpat - UPPCB']",1777407579.2856991,cpcb
+bareilly,53.0,92.0,9.0,57.0,44.0,0,2.0,"['Civil Lines, Bareilly - UPPCB', 'Rajendra Nagar, Bareilly - UPPCB']",1777407579.2856991,cpcb
+bulandshahr,77.0,200.0,58.0,29.0,28.0,0,8.0,"['Yamunapuram, Bulandshahr - UPPCB']",1777407579.2856991,cpcb
+firozabad,93.0,120.0,17.0,32.0,44.0,0,2.0,"['Vibhab Nagar, Firozabad - UPPCB', 'Nagla Bhau, Firozabad - UPPCB']",1777407579.2856991,cpcb
+sawai madhopur,37.0,137.0,38.0,3.0,29.0,0,4.0,"['Sahu Nagar, Sawai Madhopur - RSPCB']",1777407579.2856991,cpcb
+sikar,47.0,148.0,30.0,4.0,14.0,0,9.0,"['Radhakishan Pura, Sikar - RSPCB']",1777407579.2856991,cpcb
+sirohi,28.0,66.0,10.0,7.0,7.0,0,4.0,"['Vedhaynath Colony, Sirohi - RSPCB']",1777407579.2856991,cpcb
+tonk,61.0,130.0,22.0,6.0,40.0,0,6.0,"['Shastri Nagar, Tonk - RSPCB']",1777407579.2856991,cpcb
+ooty,52.0,60.0,3.0,3.0,0.0,0,0.0,"['Bombay Castel, Ooty - TNPCB']",1777407579.2856991,cpcb
+perundurai,40.0,50.0,12.0,17.0,41.0,0,3.0,"['SIPCOT Industrial Park, Perundurai - TNPCB']",1777407579.2856991,cpcb
+gangtok,50.0,53.0,6.0,1.0,7.0,0,1.0,"['Zero Point GICI, Gangtok - SSPCB']",1777407579.2856991,cpcb
+rajsamand,17.0,45.0,15.0,12.0,12.0,0,8.0,"['Dhoinda, Rajsamand - RSPCB']",1777407579.2856991,cpcb
+lucknow,166.0,152.0,40.0,23.0,61.0,0,52.0,"['Kukrail Picnic Spot-1, Lucknow - UPPCB', 'Lalbagh, Lucknow - CPCB', 'Talkatora District Industries Center, Lucknow - CPCB', 'B R Ambedkar University, Lucknow - UPPCB', 'Kendriya Vidyalaya, Lucknow - CPCB', 'Gomti Nagar, Lucknow - UPPCB']",1777407579.2856991,cpcb
+meerut,316.0,222.0,109.0,39.0,46.0,0,13.0,"['Ganga Nagar, Meerut - UPPCB', 'MIET College, Meerut - UPPCB', 'Pallavpuram Phase 2, Meerut - UPPCB', 'Jai Bhim Nagar, Meerut - UPPCB']",1777407579.2856991,cpcb
+greater noida,107.0,255.0,57.0,28.0,27.0,0,8.0,"['Knowledge Park - V, Greater Noida - UPPCB', 'Knowledge Park - III, Greater Noida - UPPCB']",1777407579.2856991,cpcb
+hapur,125.0,237.0,62.0,61.0,30.0,0,12.0,"['Anand Vihar, Hapur - UPPCB']",1777407579.2856991,cpcb
+jhansi,28.0,63.0,6.0,17.0,10.0,0,4.0,"['Shivaji Nagar, Jhansi - UPPCB']",1777407579.2856991,cpcb
+kanpur,77.0,101.0,44.0,16.0,63.0,0,3.0,"['FTI Kidwai Nagar, Kanpur - UPPCB', 'NSI Kalyanpur, Kanpur - UPPCB', 'Nehru Nagar, Kanpur - UPPCB']",1777407579.2856991,cpcb
+ghaziabad,282.0,333.0,85.0,33.0,77.0,0,20.0,"['Loni, Ghaziabad - UPPCB', 'Vasundhara, Ghaziabad - UPPCB', 'Ved Vihar-Loni, Ghaziabad - UPPCB', 'Indirapuram, Ghaziabad - UPPCB', 'Govindpuram, Ghaziabad - UPPCB', 'Sanjay Nagar, Ghaziabad - UPPCB']",1777407579.2856991,cpcb
+gorakhpur,109.0,118.0,11.0,48.0,5.0,0,1.0,"['Madan Mohan Malaviya University of Technology, Gorakhpur - UPPCB']",1777407579.2856991,cpcb
+khora,341.0,199.0,124.0,23.0,61.0,0,10.0,"['Prashant Garden, Khora - UPPCB']",1777407579.2856991,cpcb
+khurja,85.0,139.0,12.0,10.0,52.0,0,1.0,"['Kalindi Kunj, Khurja - UPPCB']",1777407579.2856991,cpcb
+moradabad,87.0,130.0,32.0,54.0,68.0,0,6.0,"['Jigar Colony, Moradabad - UPPCB', 'Kashiram Nagar, Moradabad - UPPCB', 'Transport Nagar, Moradabad - UPPCB', 'Buddhi Vihar, Moradabad - UPPCB', 'Eco Herbal Park, Moradabad - UPPCB', 'Employment Office, Moradabad - UPPCB']",1777407579.2856991,cpcb
+muzaffarnagar,95.0,165.0,39.0,37.0,22.0,0,7.0,"['New Mandi, Muzaffarnagar - UPPCB']",1777407579.2856991,cpcb
+noida,111.0,206.0,66.0,20.0,56.0,0,16.0,"['Sector - 125, Noida - UPPCB', 'Sector-1, Noida - UPPCB', 'Sector-116, Noida - UPPCB', 'Sector - 62, Noida - IMD']",1777407579.2856991,cpcb
+modinagar,227.0,290.0,58.0,30.0,45.0,0,3.0,"['SRM University, Modinagar - UPPCB']",1777407579.2856991,cpcb
+prayagraj,47.0,89.0,12.0,40.0,20.0,0,8.0,"['Jhunsi, Prayagraj - UPPCB', 'Motilal Nehru NIT, Prayagraj - UPPCB', 'Nagar Nigam, Prayagraj - UPPCB']",1777407579.2856991,cpcb
+varanasi,91.0,107.0,41.0,36.0,20.0,0,1.0,"['Ardhali Bazar, Varanasi - UPPCB', 'Bhelupur, Varanasi - UPPCB', 'Maldahiya, Varanasi - UPPCB', 'IESD Banaras Hindu University, Varanasi - UPPCB']",1777407579.2856991,cpcb
+dehradun,44.0,38.0,2.0,6.0,7.0,0,0.0,"['Doon University, Dehradun - UKPCB']",1777407579.2856991,cpcb
+asansol,111.0,92.0,37.0,69.0,75.0,0,6.0,"['Asansol Court Area, Asansol - WBPCB', 'Evelyn Lodge, Asansol - WBPCB', 'Mahabir Colliery, Asansol - WBPCB', 'Trivenidevi Bhalotia College, Asansol - WBPCB']",1777407579.2856991,cpcb
+durgapur,73.0,94.0,46.0,12.0,41.0,0,7.0,"['Mahishkapur Road_B-Zone, Durgapur - WBPCB', 'Womens College_City Center, Durgapur - WBPCB', 'PCBL Residential Complex, Durgapur - WBPCB']",1777407579.2856991,cpcb
+howrah,53.0,71.0,53.0,21.0,80.0,0,5.0,"['Belur Math, Howrah - WBPCB', 'Botanical Garden, Howrah - WBPCB', 'Ghusuri, Howrah - WBPCB', 'Padmapukur, Howrah - WBPCB', 'Dasnagar, Howrah - WBPCB']",1777407579.2856991,cpcb
+kolkata,58.0,66.0,50.0,20.0,52.0,0,11.0,"['Ballygunge, Kolkata - WBPCB', 'Bidhannagar, Kolkata - WBPCB', 'Fort William, Kolkata - WBPCB', 'Jadavpur, Kolkata - WBPCB', 'Rabindra Bharati University, Kolkata - WBPCB', 'Rabindra Sarobar, Kolkata - WBPCB', 'Victoria, Kolkata - WBPCB']",1777407579.2856991,cpcb
+siliguri,58.0,87.0,76.0,14.0,39.0,0,10.0,"['Ward-32 Bapupara, Siliguri - WBPCB']",1777407579.2856991,cpcb
+buxar,60.0,57.0,9.0,28.0,24.0,0,3.0,"['Charitra Van, Buxar - BSPCB']",1777407579.2856991,cpcb
+kishanganj,53.0,47.0,8.0,8.0,14.0,0,3.0,"['SDM Office_Khagra, Kishanganj - BSPCB']",1777407579.2856991,cpcb
+guntur,69.0,83.0,19.0,14.0,10.0,0,4.0,"['Rajendra Nagar North, Guntur - APPCB']",1777407579.2856991,cpcb
+begusarai,134.0,102.0,13.0,39.0,18.0,0,4.0,"['Lohiyanagar, Begusarai - BSPCB']",1777407579.2856991,cpcb
+chhal,0.0,0.0,0.0,0.0,0.0,0,0.0,"['Nawapara SECL Colony, Chhal - CECB']",1777407579.2856991,cpcb
+korba,30.0,74.0,38.0,48.0,46.0,0,1.0,"['Rampur, Korba - CECB', 'Urja Nagar, Korba - CECB']",1777407579.2856991,cpcb
+ballabgarh,105.0,294.0,20.0,9.0,51.0,0,3.0,"['Nathu Colony, Ballabgarh - HSPCB']",1777407579.2856991,cpcb
+karnal,104.0,88.0,6.0,9.0,13.0,0,6.0,"['Sector-12, Karnal - HSPCB']",1777407579.2856991,cpcb
+charkhi dadri,251.0,159.0,15.0,11.0,14.0,0,6.0,"['Mini Secretariat, Charkhi Dadri - HSPCB']",1777407579.2856991,cpcb
+palwal,128.0,127.0,24.0,12.0,28.0,0,9.0,"['Shyam Nagar, Palwal - HSPCB']",1777407579.2856991,cpcb
+thrissur,0.0,0.0,0.0,0.0,0.0,0,0.0,"['Corporation Ground, Thrissur - Kerala PCB']",1777407579.2856991,cpcb
+damoh,61.0,100.0,0.0,50.0,16.0,0,0.0,"['Shrivastav Colony, Damoh - MPPCB']",1777407579.2856991,cpcb
+katni,68.0,109.0,29.0,63.0,20.0,0,5.0,"['Gole Bazar, Katni - MPPCB']",1777407579.2856991,cpcb
+dombivli,35.0,59.0,27.0,8.0,21.0,0,2.0,"['Kalu Nagar, Dombivli - MPCB']",1777407579.2856991,cpcb
+baripada,65.0,84.0,11.0,9.0,21.0,0,1.0,"['Meher Colony, Baripada - OSPCB']",1777407579.2856991,cpcb
+keonjhar,53.0,77.0,13.0,8.0,28.0,0,3.0,"['Jagamohanpur, Keonjhar - OSPCB']",1777407579.2856991,cpcb
+aizawl,18.0,67.0,1.0,14.0,4.0,0,0.0,"['Sikulpuikawn, Aizawl - Mizoram PCB']",1777407579.2856991,cpcb
+jalore,29.0,71.0,14.0,5.0,20.0,0,4.0,"['Mudtra Sili, Jalore - RSPCB']",1777407579.2856991,cpcb
+karauli,63.0,94.0,43.0,11.0,38.0,0,8.0,"['Satyawati Vihar, Karauli - RSPCB']",1777407579.2856991,cpcb
+mandi gobindgarh,184.0,202.0,24.0,25.0,36.0,0,6.0,"['RIMT University, Mandi Gobindgarh - PPCB']",1777407579.2856991,cpcb
+ajmer,63.0,105.0,28.0,10.0,51.0,0,4.0,"['Civil Lines,  Ajmer - RSPCB']",1777407579.2856991,cpcb
+dholpur,0.0,98.0,36.0,6.0,27.0,0,0.0,"['Raja Ganj, Dholpur - RSPCB']",1777407579.2856991,cpcb
+ramanathapuram,0.0,22.0,0.0,10.0,0.0,0,0.0,"['Chalai Bazaar, Ramanathapuram - TNPCB']",1777407579.2856991,cpcb
+sri ganganagar,67.0,140.0,22.0,5.0,36.0,0,4.0,"['Old City, Sri Ganganagar - RSPCB']",1777407579.2856991,cpcb
+udaipur,96.0,105.0,57.0,7.0,21.0,0,10.0,"['Ashok Nagar, Udaipur - RSPCB']",1777407579.2856991,cpcb
+madurai,0.0,0.0,0.0,0.0,28.0,0,0.0,"['Uchapatti, Madurai - TNPCB']",1777407579.2856991,cpcb
+vrindavan,45.0,100.0,27.0,23.0,17.0,0,9.0,"['Omex Eternity, Vrindavan - UPPCB']",1777407579.2856991,cpcb
+kashipur,0.0,0.0,8.0,0.0,15.0,0,2.0,"['Govt. Girls Inter College, Kashipur - UKPCB']",1777407579.2856991,cpcb
+rishikesh,2.0,38.0,22.0,1.0,37.0,0,11.0,"['Shivaji Nagar, Rishikesh - UKPCB']",1777407579.2856991,cpcb
+barrackpore,53.0,64.0,24.0,15.0,34.0,0,6.0,"['SVSPA Campus, Barrackpore - WBPCB']",1777407579.2856991,cpcb
+haldia,53.0,65.0,16.0,13.0,24.0,0,4.0,"['Priyambada Housing Estate, Haldia - WBPCB']",1777407579.2856991,cpcb
+pampore,77.0,79.0,18.0,4.0,0.0,0,0.0,"['Khrew, Pampore - JKPCC']",1777407579.2856991,cpcb
+panipat,79.0,182.0,31.0,19.0,40.0,0,3.0,"['Sector-18, Panipat - HSPCB']",1777407579.2856991,cpcb
+maihar,0.0,0.0,0.0,0.0,81.0,0,0.0,"['Sahilara, Maihar - KJS Cements']",1777407579.2856991,cpcb
+pithampur,57.0,110.0,16.0,13.0,18.0,0,14.0,"['Sector-2 Industrial Area, Pithampur - MPPCB']",1777407579.2856991,cpcb
+jalna,58.0,75.0,21.0,0.0,8.0,0,4.0,"['Old MIDC, Jalna - MPCB']",1777407579.2856991,cpcb
+kohima,0.0,0.0,4.0,32.0,5.0,0,1.0,"['PWD Junction, Kohima - NPCB']",1777407579.2856991,cpcb
+khanna,50.0,60.0,28.0,23.0,30.0,0,7.0,"['Kalal Majra, Khanna - PPCB']",1777407579.2856991,cpcb
+rupnagar,17.0,22.0,26.0,14.0,36.0,0,0.0,"['Ratanpura, Rupnagar - Ambuja Cements']",1777407579.2856991,cpcb
+thoothukudi,0.0,64.0,17.0,10.0,36.0,0,0.0,"['Meelavittan, Thoothukudi - TNPCB']",1777407579.2856991,cpcb
+koppal,0.0,36.0,30.0,0.0,0.0,0,8.0,"['Diwator Nagar, Koppal - KSPCB']",1777407579.2856991,cpcb

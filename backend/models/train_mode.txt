@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+import joblib
+import os
+
+def create_dummy_data(samples=1000):
+    """Creates dummy data for training."""
+    # Features: temp, humidity, wind_speed, and pm10, no2, o3 (as pollutants)
+    np.random.seed(42)
+    data = {
+        'temp': np.random.uniform(0, 35, samples),
+        'humidity': np.random.uniform(20, 80, samples),
+        'wind_speed': np.random.uniform(0, 30, samples),
+        'pm10': np.random.uniform(0, 150, samples),
+        'no2': np.random.uniform(0, 80, samples),
+        'o3': np.random.uniform(0, 120, samples),
+    }
+    
+    # Target: AQI
+    # A simple (and unrealistic) formula for demonstration
+    data['aqi'] = (data['pm10'] * 0.5 + data['no2'] * 0.7 + data['o3'] * 0.6 - 
+                   data['wind_speed'] * 0.2 - (data['humidity'] - 50) * 0.1 + 
+                   (data['temp'] - 18) * 0.3)
+    
+    # Add some noise
+    data['aqi'] += np.random.normal(0, 10, samples)
+    # Ensure AQI is non-negative
+    data['aqi'] = np.maximum(data['aqi'], 0)
+    
+    return pd.DataFrame(data)
+
+def train_model():
+    """Trains the model and saves it."""
+    print("Creating dummy data...")
+    df = create_dummy_data(samples=2000)
+    
+    # Define features (X) and target (y)
+    features = ['temp', 'humidity', 'wind_speed', 'pm10', 'no2', 'o3']
+    target = 'aqi'
+    
+    X = df[features]
+    y = df[target]
+    
+    # Split data
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    print("Training Random Forest model...")
+    # We use RandomForestRegressor because AQI is a continuous value
+    model = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
+    model.fit(X_train, y_train)
+    
+    # Evaluate model
+    y_pred = model.predict(X_test)
+    mae = mean_absolute_error(y_test, y_pred)
+    print(f"Model training complete.")
+    print(f"Test Mean Absolute Error (MAE): {mae:.2f}")
+    
+    # Save the model
+    # Ensure the /models directory exists (it should, based on structure)
+    model_path = os.path.join(os.path.dirname(__file__), 'model.pkl')
+    joblib.dump(model, model_path)
+    print(f"Model saved to {model_path}")
+
+if __name__ == "__main__":
+    train_model()
